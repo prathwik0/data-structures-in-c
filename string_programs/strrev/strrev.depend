@@ -1,0 +1,5 @@
+# depslib dependency file v1.0
+1666087539 source:/home/student/4nm21ai053/DS lab/strrev/main.c
+	<stdio.h>
+	<stdlib.h>
+
