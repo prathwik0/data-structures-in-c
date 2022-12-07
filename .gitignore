@@ -1,4 +1,3 @@
 *
-!dsclass/**
-!.gitignore
-!README.md
+!/**/
+!*.*
