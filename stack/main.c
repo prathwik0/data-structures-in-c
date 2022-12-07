@@ -6,11 +6,7 @@ int a[10];
 int pos = -1;
 
 void push(int x){
-    //initializes the stack if empty
-    if (pos == -1){
-        pos = 0;
-        a[pos] = x;
-    }else if(pos == MAX - 1){
+    if(pos == MAX - 1){
         printf("The stack if full\n%d was not pushed\n", x);
     }else{
         pos++;
@@ -21,12 +17,7 @@ void push(int x){
 int pop(){
     if (pos == -1){
         printf("Empty stack, can't pop\n");
-        return 0;
-    }else if(pos == 0){
-        printf("The stack will now be empty\n");
-        int temp = a[pos];
-        pos = -1;
-        return temp;
+        return -1;
     }else{
         int temp = a[pos];
         pos--;
