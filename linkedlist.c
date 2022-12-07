@@ -45,6 +45,7 @@ void display(node *n)
 
 int delete(node *n, int x)
 {
+    int count = 0;
     while(*n != NULL)
     {
         if ((*n)->data == x)
@@ -52,10 +53,14 @@ int delete(node *n, int x)
             node temp = *n;
             *n = (*n)->next;
             free(temp);
+            count++;
         }
-        n = &((*n)->next);
+        else
+        {
+            n = &((*n)->next);
+        }
     }
-    return 0;
+    return count;
 }
 
 int main()
@@ -84,7 +89,7 @@ int main()
             int d;
             printf("Enter int: ");
             scanf("%d", &d);
-            delete(&a, d);
+            printf("%d elements deleted\n", delete(&a, d));
         }
         else
         {
