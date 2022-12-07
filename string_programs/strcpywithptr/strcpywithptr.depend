@@ -1,9 +1,0 @@
-# depslib dependency file v1.0
-1666084696 source:/home/student/Desktop/4nm21ai053/c++/strcpywithptr/main.c
-	<stdio.h>
-	<stdlib.h>
-
-1666086249 source:/home/student/4nm21ai053/DS lab/strcpywithptr/main.c
-	<stdio.h>
-	<stdlib.h>
-
