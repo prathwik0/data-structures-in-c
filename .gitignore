@@ -1,5 +1,4 @@
 *
-!**/dsclass/*.c
-!*.c
+!dsclass/**
 !.gitignore
 !README.md
