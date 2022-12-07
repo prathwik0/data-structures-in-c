@@ -21,6 +21,5 @@ void strcat(char *s, char *s1, char *s2){
         *s++ = *s1++;
     while(*s2 != 0)
         *s++ = *s2++;
-    s++;
-    *s = '\0';
+    *(++s) = '\0';
 }
