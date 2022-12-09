@@ -188,7 +188,8 @@ int basic_main()
             //insertback(&a, d);
 
             //use the following to insert in user input position
-            //for insert at front input pos = 0, for end input pos = negative (or pos exceeds number of elements in the list)
+            //for insert at front input pos = 0
+            //for end input pos = negative (or pos exceeds number of elements in the list)
             int pos;
             printf("Enter position: ");
             scanf("%d", &pos);
@@ -207,7 +208,8 @@ int basic_main()
             printf("%d elements deleted\n", deletevalue(&a, d));*/
 
             //use the following to delete from user input position
-            //for delete at front input pos = 0, for end input pos = negative (or pos exceeds number of elements in the list)
+            //for delete at front input pos = 0
+            //for end input pos = negative (or pos exceeds number of elements in the list)
             int pos;
             printf("Enter position: ");
             scanf("%d", &pos);
