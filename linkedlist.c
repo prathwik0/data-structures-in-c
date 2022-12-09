@@ -115,12 +115,12 @@ int deletevalue(node *n, int x)
 
 void push(stack *a, int d)
 {
-    
+    insert(&(a->n), 0, d);
 }
 
 int pop(stack *a)
 {
-    
+    return delete(&(a->n), 0);
 }
 
 int basic_main()
@@ -235,8 +235,8 @@ int queue_main()
 {
     //this is an implementation of circular queue
     queue a;
-    a->enter = NULL;
-    a->exit = NULL;
+    a.enter = NULL;
+    a.enter = NULL;
 
     while (1)
     {
