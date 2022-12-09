@@ -85,7 +85,26 @@ int popb(node *n)
     return temp2;
 }
 
-int delete(node *n, int x)
+int delete(node *n, int pos)
+{
+    while (*n != NULL)
+    {
+        if (pos == 0)
+        {
+            node temp = *n;
+            *n = (*n)->next;
+
+            int temp2 = temp->data;
+
+            free(temp);
+
+            return temp2;
+        }
+        pos--;
+    }
+}
+
+int deleteval(node *n, int x)
 {
     int count = 0;
     while(*n != NULL)
