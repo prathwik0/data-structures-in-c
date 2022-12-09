@@ -18,6 +18,56 @@ typedef struct QUEUE
     node exit;
 }queue;
 
+void getnode(node *n);
+
+void display(node n);
+
+void insert(node *n, int pos, int x);
+void insertfront(node *n, int x);
+void insertend(node *n, int x);
+
+int delete(node *n, int pos);
+int deletevalue(node *n, int x);
+
+int basic_main();
+
+void push(stack *a, int d);
+int pop(stack *a);
+int stack_main();
+
+void enqueue(queue *a, int d);
+int dequeue(queue *a);
+void dispQueue(queue a);
+int queue_main();
+
+int main()
+{
+    //choice allows you to choose if you want to implement a stack or queue or just use the linked list
+    //basic_main(), stack_main() etc. can also be used as the main function if you want just one implementations
+    //to do that rename those functions to main() and delete the current main function
+
+    int choice;
+    printf("1 - basic, 2 - stack, 3 - circ queue\n");
+    scanf("%d", &choice);
+
+    if (choice == 1)
+    {
+        return basic_main();
+    }
+    else if (choice == 2)
+    {
+        return stack_main();
+    }
+    else if (choice == 3)
+    {
+        return queue_main();
+    }
+    else 
+    {
+        return 0;
+    }
+}
+
 void getnode(node *n)
 {
     *n = (struct NODE *)malloc(sizeof(struct NODE));
@@ -54,18 +104,18 @@ void insertend(node *n, int x)
     (*n)->next = NULL;
 }
 
-void display(node *n)
+void display(node n)
 {
     //this prints a message for empty linked-list
-    if(*n == NULL)
+    if(n == NULL)
     {
         printf("no elements present");
     }
     
-    while(*n != NULL)
+    while(n != NULL)
     {
-        printf("%d ", (*n)->data);
-        n = &((*n)->next);
+        printf("%d ->", n->data);
+        n = n->next;
     }
 
     printf("\n");
@@ -146,7 +196,7 @@ int basic_main()
         }
         else if (n == 2)
         {
-            display(&a);
+            display(a);
         }
         else if (n == 3)
         {
@@ -201,7 +251,7 @@ int stack_main()
         }
         else if (n == 2)
         {
-            display(&(a.n));
+            display(a.n);
         }
         else if (n == 3)
         {
@@ -253,20 +303,20 @@ int dequeue(queue *a)
     }
 }
 
-void dispQueue(queue *a)
+void dispQueue(queue a)
 {
     //this prints a message for empty queue
-    if(*n == NULL)
+    if(a.enter == NULL)
     {
         printf("no elements present");
     }
     
-    while(*n != NULL)
+    while(a.exit != a.enter)
     {
-        printf("%d ", (*n)->data);
-        n = &((*n)->next);
+        printf("%d <- ", a.exit->data);
+        a.exit = a.exit->next;
     }
-
+    printf("%d", a.enter->data);
     printf("\n");
 }
 
@@ -292,7 +342,7 @@ int queue_main()
         }
         else if (n == 2)
         {
-            dispQueue(&a);
+            dispQueue(a);
         }
         else if (n == 3)
         {
@@ -302,33 +352,5 @@ int queue_main()
         {
             return 0;
         }
-    }
-}
-
-int main()
-{
-    //choice allows you to choose if you want to implement a stack or queue or just use the linked list
-    //basic_main(), stack_main() etc. can also be used as the main function if you want just one implementations
-    //to do that rename those functions to main() and delete the current main function
-
-    int choice;
-    printf("1 - basic, 2 - stack, 3 - circ queue\n");
-    scanf("%d", &choice);
-
-    if (choice == 1)
-    {
-        return basic_main();
-    }
-    else if (choice == 2)
-    {
-        return stack_main();
-    }
-    else if (choice == 3)
-    {
-        return queue_main();
-    }
-    else 
-    {
-        return 0;
     }
 }
