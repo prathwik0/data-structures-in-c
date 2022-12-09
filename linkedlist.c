@@ -43,6 +43,48 @@ void display(node *n)
     return;
 }
 
+int popf(node *n)
+{
+    //returns -1 if linked list is empty
+    if (*node == NULL)
+    {
+        return -1;
+    }
+
+    node temp = *n;
+    *n = (*n)->next;
+
+    int temp2 = temp->data;
+
+    free(temp);
+
+    return temp2;
+}
+
+int popb(node *n)
+{
+    //returns -1 if linked list is empty
+    if (*node == NULL)
+    {
+        return -1;
+    }
+
+    //this traverses to the node
+    while((*n)->next != NULL)
+    {
+        n = &((*n)->next);
+    }
+
+    node temp = *n;
+    *n = (*n)->next;
+
+    int temp2 = temp->data;
+
+    free(temp);
+
+    return temp2;
+}
+
 int delete(node *n, int x)
 {
     int count = 0;
