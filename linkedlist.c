@@ -114,7 +114,7 @@ void display(node n)
     
     while(n != NULL)
     {
-        printf("%d ->", n->data);
+        printf("-> %d ", n->data);
         n = n->next;
     }
 
@@ -178,7 +178,7 @@ int basic_main()
         if (n == 1)
         {
             int d;
-            printf("Enter data: ");
+            printf("Enter data:                          ");
             scanf("%d", &d);
 
             //use the following to insert at the front
@@ -245,7 +245,7 @@ int stack_main()
         if (n == 1)
         {
             int d;
-            printf("Enter data: ");
+            printf("Enter data:                     ");
             scanf("%d", &d);
             push(&a, d);
         }
@@ -336,7 +336,7 @@ int queue_main()
         if (n == 1)
         {
             int d;
-            printf("Enter data: ");
+            printf("Enter data                           : ");
             scanf("%d", &d);
             enqueue(&a, d);
         }
