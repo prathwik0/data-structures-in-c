@@ -9,12 +9,13 @@ typedef struct NODE
 
 typedef struct STACK
 {
-    node a;
+    node n;
 }stack;
 
 typedef struct QUEUE
 {
-    node b;
+    node enter;
+    node exit;
 }queue;
 
 void getnode(node *n)
@@ -112,46 +113,14 @@ int deletevalue(node *n, int x)
     return count;
 }
 
-int popf(node *n)
+void push(stack *a, int d)
 {
-    //returns -1 if linked list is empty
-    if (*n == NULL)
-    {
-        return -1;
-    }
-
-    node temp = *n;
-    *n = (*n)->next;
-
-    int temp2 = temp->data;
-
-    free(temp);
-
-    return temp2;
+    
 }
 
-int popb(node *n)
+int pop(stack *a)
 {
-    //returns -1 if linked list is empty
-    if (*n == NULL)
-    {
-        return -1;
-    }
-
-    //this traverses to the node
-    while((*n)->next != NULL)
-    {
-        n = &((*n)->next);
-    }
-
-    node temp = *n;
-    *n = (*n)->next;
-
-    int temp2 = temp->data;
-
-    free(temp);
-
-    return temp2;
+    
 }
 
 int basic_main()
@@ -213,12 +182,88 @@ int basic_main()
 
 int stack_main()
 {
+    //this is an implementation of stack using linked-lists
+    stack a;
+    a.n = NULL;
+
+    while (1)
+    {
+        int n;
+        printf("1 - push, 2 - display, 3 - pop: ");
+        scanf("%d", &n);
+
+        if (n == 1)
+        {
+            int d;
+            printf("Enter data: ");
+            scanf("%d", &d);
+            push(&a, d);
+        }
+        else if (n == 2)
+        {
+            display(&(a.n));
+        }
+        else if (n == 3)
+        {
+            printf("Popped: %d\n", pop(&a));
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
+
+void enqueue(queue *a, int d)
+{
+    if (a->enter == NULL)
+    {
+        getnode(&(a->enter));
+        a->exit = a->enter;
+
+
+
+    }
+}
+
+int dequeue(queue *a)
+{
     return -1;
 }
 
 int queue_main()
 {
-    return -1;
+    //this is an implementation of circular queue
+    queue a;
+    a->enter = NULL;
+    a->exit = NULL;
+
+    while (1)
+    {
+        int n;
+        printf("1 - enqueue, 2 - display, 3 - dequeue: ");
+        scanf("%d", &n);
+
+        if (n == 1)
+        {
+            int d;
+            printf("Enter data: ");
+            scanf("%d", &d);
+            enqueue(&a, d);
+        }
+        else if (n == 2)
+        {
+            display(&(a.exit));
+        }
+        else if (n == 3)
+        {
+            printf("Dequeued: %d\n", dequeue(&a));
+        }
+        else
+        {
+            return 0;
+        }
+    }
 }
 
 int main()
@@ -234,6 +279,10 @@ int main()
     if (choice == 1)
     {
         return basic_main();
+    }
+    else if (choice == 2)
+    {
+        return stack_main();
     }
     else if (choice == 3)
     {
