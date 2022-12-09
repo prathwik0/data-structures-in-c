@@ -55,30 +55,41 @@ void insertend(node *n, int x)
 
 void display(node *n)
 {
-    printf("\n");
+    //this prints a message for empty list
+    if(*n == NULL)
+    {
+        printf("no elements present");
+    }
+    
     while(*n != NULL)
     {
         printf("%d ", (*n)->data);
         n = &((*n)->next);
     }
+
     printf("\n");
-    return;
 }
 
 int delete(node *n, int pos)
 {
-    while (*n != NULL && pos != 0)
+    //this checks for list empty condition
+    if(*n == NULL)
+    {
+        //the list is empty, cant delete
+        return -1;
+    }
+
+    //if position is neg or exceeds the num of elements in list, delete end
+    while ((*n)->next != NULL && pos != 0)
     {
         n = &((*n)->next);
         pos--;
     }
-    if (pos == 0)
-    {
-        node temp = *n;
-        *n = (*n)->next;
-        free(temp);
-    }
-    return -1;
+    node temp = *n;
+    int temp2 = temp->data;
+    *n = (*n)->next;
+    free(temp);
+    return temp2;
 }
 
 int deletevalue(node *n, int x)
@@ -146,7 +157,7 @@ int popb(node *n)
 int basic_main()
 {
     //this is an implementation of basic linked list
-    //for insertion and deletion, the program asks the user for the position 
+    //currently, for insertion and deletion, the program asks the user for the position 
     node a = NULL;
 
     while (1)
@@ -158,9 +169,21 @@ int basic_main()
         if (n == 1)
         {
             int d;
-            printf("Enter int: ");
+            printf("Enter data: ");
             scanf("%d", &d);
-            insertend(&a, d);
+
+            //use the following to insert at the front
+            //insertfront(&a, d);
+
+            //use the following to insert at the end
+            //insertback(&a, d);
+
+            //use the following to insert in user input position
+            //for insert at front input pos = 0, for end input pos = negative (or pos exceeds number of elements in the list)
+            int pos;
+            printf("Enter position: ");
+            scanf("%d", &pos);
+            insert(&a, pos, d);
         }
         else if (n == 2)
         {
@@ -168,17 +191,24 @@ int basic_main()
         }
         else if (n == 3)
         {
-            int d;
+            //use the following to delete user input value(s) from the list
+            /*int d;
             printf("Enter int: ");
             scanf("%d", &d);
-            printf("%d elements deleted\n", deletevalue(&a, d));
+            printf("%d elements deleted\n", deletevalue(&a, d));*/
+
+            //use the following to delete from user input position
+            //for delete at front input pos = 0, for end input pos = negative (or pos exceeds number of elements in the list)
+            int pos;
+            printf("Enter position: ");
+            scanf("%d", &pos);
+            delete(&a, pos);
         }
         else
         {
             return 0;
         }
     }
-    return -1;
 }
 
 int stack_main()
