@@ -56,7 +56,7 @@ void insertend(node *n, int x)
 
 void display(node *n)
 {
-    //this prints a message for empty list
+    //this prints a message for empty linked-list
     if(*n == NULL)
     {
         printf("no elements present");
@@ -219,16 +219,55 @@ void enqueue(queue *a, int d)
     if (a->enter == NULL)
     {
         getnode(&(a->enter));
-        a->exit = a->enter;
+        
+        a->enter->next = a->enter;
+        a->exit = a->enter->next;
 
-
-
+        a->enter->data = d;
+    }
+    else 
+    {
+        insert(&(a->enter), 1, d);
+        a->enter = a->enter->next;
     }
 }
 
 int dequeue(queue *a)
 {
-    return -1;
+    if (a->enter == NULL)
+    {
+        return -1;
+    }
+    else if (a->enter == a->exit)
+    {
+        int temp = a->enter->data;
+        free(a->enter);
+        a->enter = NULL;
+        a->exit = NULL;
+        return temp;
+    }
+    else
+    {
+        a->exit = a->exit->next;
+        return delete(&(a->enter), 1);
+    }
+}
+
+void dispQueue(queue *a)
+{
+    //this prints a message for empty queue
+    if(*n == NULL)
+    {
+        printf("no elements present");
+    }
+    
+    while(*n != NULL)
+    {
+        printf("%d ", (*n)->data);
+        n = &((*n)->next);
+    }
+
+    printf("\n");
 }
 
 int queue_main()
@@ -236,7 +275,7 @@ int queue_main()
     //this is an implementation of circular queue
     queue a;
     a.enter = NULL;
-    a.enter = NULL;
+    a.exit = NULL;
 
     while (1)
     {
@@ -253,7 +292,7 @@ int queue_main()
         }
         else if (n == 2)
         {
-            display(&(a.exit));
+            dispQueue(&a);
         }
         else if (n == 3)
         {
