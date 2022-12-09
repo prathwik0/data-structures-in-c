@@ -163,7 +163,7 @@ int basic_main()
     while (1)
     {
         int n;
-        printf("1 - insert, 2 - display, 3 - delete\n");
+        printf("1 - insert, 2 - display, 3 - delete: ");
         scanf("%d", &n);
 
         if (n == 1)
@@ -234,6 +234,10 @@ int main()
     if (choice == 1)
     {
         return basic_main();
+    }
+    else if (choice == 3)
+    {
+        return queue_main();
     }
     else 
     {
