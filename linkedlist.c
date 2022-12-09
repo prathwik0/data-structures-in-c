@@ -113,16 +113,6 @@ int deletevalue(node *n, int x)
     return count;
 }
 
-void push(stack *a, int d)
-{
-    insert(&(a->n), 0, d);
-}
-
-int pop(stack *a)
-{
-    return delete(&(a->n), 0);
-}
-
 int basic_main()
 {
     //this is an implementation of basic linked list
@@ -178,6 +168,16 @@ int basic_main()
             return 0;
         }
     }
+}
+
+void push(stack *a, int d)
+{
+    insert(&(a->n), 0, d);
+}
+
+int pop(stack *a)
+{
+    return delete(&(a->n), 0);
 }
 
 int stack_main()
