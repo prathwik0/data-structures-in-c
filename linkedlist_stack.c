@@ -94,23 +94,29 @@ void getnode(node *n)
 //if there are no elements, it prints: no elements present
 void display(node n);
 
-//push function inserts the element at start of the list
-//it is identical to insertfront function in linkedlist_pure
-void push(node *n, data x);
+//the stack is defined as a structure named stack
+typedef struct 
+{
+    node head;
+}stack;
 
+//push function inserts the element at start of the list
+//it is similar to insertfront function in linkedlist_pure
+void push(stack *s, data x);
 
 //pop function deletes the element at the specified position pos and returns the deleted data
 //if pos is negative the last element is deleted
-//it is identical to deletefront function in linkedlist_pure
+//it is similar to deletefront function in linkedlist_pure
 //if there are no elements in the linked list, function returns data with all values set to NULL or zero
-data pop(node *n);
+data pop(stack *s);
 
 //the following is the main function
 int main()
 {
     //this is an implementation of stack using linked list
     
-    node a = NULL;
+    stack s;
+    s.head = NULL;
 
     while (1)
     {
@@ -123,17 +129,17 @@ int main()
             data d = getdata();
 
             //use the following to push
-            push(&a, d);
+            push(&s, d);
         }
         else if (n == 2)
         {
-            display(a);
+            display(s.head);
         }
         else if (n == 3)
         {
             //the following pops the top of stack and prints it
             printf("popped element : ");
-            printdata(pop(&a));
+            printdata(pop(&s));
             printf("\n\n");
         }
         else
@@ -143,24 +149,16 @@ int main()
     }
 }
 
-// NOTE: all the following functions other than display take node *n as one of the inputs
-// be careful while using node *n 
-//
-// inside the function n represents the local variable
-// all changes to n affects only the local variable n, the linked list will not be affected
-//
-// **********************************************************************************
-// but *n is not a local variable, all changes made to *n will modify the linked list
-// **********************************************************************************
-
-void push(node *n, data x)
+void push(stack *s, data x)
 {
-    node temp = *n;
-    getnode(n);
-    insertdata(&((*n)->d) ,x);
-    (*n)->next = temp;
+    node temp = s->head;
+    getnode(&(s->head));
+    insertdata(&(s->head->d) ,x);
+    s->head->next = temp;
 }
 
+
+//I have used the same display function as in linked list and haven't written a new one
 void display(node n)
 {
     //this prints a message for empty linked-list
@@ -179,19 +177,19 @@ void display(node n)
     printf("\n\n");
 }
 
-data pop(node *n)
+data pop(stack *s)
 {
     //this checks for list empty condition
-    if(*n == NULL)
+    if(s->head == NULL)
     {
         //the list is empty, cant delete
         data d = getnull();
         return d;
     }
 
-    node temp = *n;
+    node temp = s->head;
     data temp2 = temp->d;
-    *n = (*n)->next;
+    s->head = s->head->next;
     free(temp);
     return temp2;
 }
