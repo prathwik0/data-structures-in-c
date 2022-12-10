@@ -29,17 +29,8 @@ void insertend(node *n, int x);
 int delete(node *n, int pos);
 int deletevalue(node *n, int x);
 
-int basic_main();
 
-void push(stack *a, int d);
-int pop(stack *a);
-int stack_main();
-
-void enqueue(queue *q, int d);
-int dequeue(queue *q);
-void dispQueue(queue q);
-int queue_main();
-
+/*
 int main()
 {
     //choice allows you to choose if you want to implement a stack or queue or just use the linked list
@@ -67,6 +58,8 @@ int main()
         return 0;
     }
 }
+
+*/
 
 void getnode(node *n)
 {
@@ -118,7 +111,7 @@ void display(node n)
         n = n->next;
     }
 
-    printf("\n");
+    printf("\n\n");
 }
 
 int delete(node *n, int pos)
@@ -163,7 +156,7 @@ int deletevalue(node *n, int x)
     return count;
 }
 
-int basic_main()
+int main()
 {
     //this is an implementation of basic linked list
     //currently, for insertion and deletion, the program asks the user for the position 
@@ -172,18 +165,17 @@ int basic_main()
     while (1)
     {
         int n;
-        printf("1 - insert, 2 - display, 3 - delete: ");
+        printf("1 - insert, 2 - display, 3 - delete : ");
         scanf("%d", &n);
 
         if (n == 1)
         {
             int d;
-            printf("Enter data:                          ");
+            printf("Enter data                          : ");
             scanf("%d", &d);
 
             //use the following to insert at the front
             //insertfront(&a, d);
-
             //use the following to insert at the end
             //insertback(&a, d);
 
@@ -191,8 +183,9 @@ int basic_main()
             //for insert at front input pos = 0
             //for end input pos = negative (or pos exceeds number of elements in the list)
             int pos;
-            printf("Enter position: ");
+            printf("Enter position                      : ");
             scanf("%d", &pos);
+            printf("\n");
             insert(&a, pos, d);
         }
         else if (n == 2)
@@ -207,148 +200,19 @@ int basic_main()
             scanf("%d", &d);
             printf("%d elements deleted\n", deletevalue(&a, d));*/
 
+            //use the following to delete from the front
+            //delete(&a, 0);
+            //use the following to delete from the end
+            //delete(&a, -1);
+
             //use the following to delete from user input position
             //for delete at front input pos = 0
             //for end input pos = negative (or pos exceeds number of elements in the list)
             int pos;
-            printf("Enter position: ");
+            printf("Enter position                      : ");
             scanf("%d", &pos);
+            printf("\n");
             delete(&a, pos);
-        }
-        else
-        {
-            return 0;
-        }
-    }
-}
-
-void push(stack *a, int d)
-{
-    insert(&(a->n), 0, d);
-}
-
-int pop(stack *a)
-{
-    return delete(&(a->n), 0);
-}
-
-int stack_main()
-{
-    //this is an implementation of stack using linked-lists
-    stack a;
-    a.n = NULL;
-
-    while (1)
-    {
-        int n;
-        printf("1 - push, 2 - display, 3 - pop: ");
-        scanf("%d", &n);
-
-        if (n == 1)
-        {
-            int d;
-            printf("Enter data:                     ");
-            scanf("%d", &d);
-            push(&a, d);
-        }
-        else if (n == 2)
-        {
-            display(a.n);
-        }
-        else if (n == 3)
-        {
-            printf("Popped: %d\n", pop(&a));
-        }
-        else
-        {
-            return 0;
-        }
-    }
-}
-
-void enqueue(queue *q, int d)
-{
-    if (q->enter == NULL)
-    {
-        getnode(&(q->enter));
-        
-        q->enter->next = q->enter;
-        q->exit = q->enter->next;
-
-        q->enter->data = d;
-    }
-    else 
-    {
-        insert(&(q->enter), 1, d);
-        q->enter = q->enter->next;
-    }
-}
-
-int dequeue(queue *q)
-{
-    if (q->enter == NULL)
-    {
-        return -1;
-    }
-    else if (q->enter == q->exit)
-    {
-        int temp = q->enter->data;
-        free(q->enter);
-        q->enter = NULL;
-        q->exit = NULL;
-        return temp;
-    }
-    else
-    {
-        q->exit = q->exit->next;
-        return delete(&(q->enter), 1);
-    }
-}
-
-void dispQueue(queue q)
-{
-    //this prints q message for empty queue
-    if(q.enter == NULL)
-    {
-        printf("no elements present");
-    }
-    
-    while(q.exit != q.enter)
-    {
-        printf("%d <- ", q.exit->data);
-        q.exit = q.exit->next;
-    }
-    printf("%d", q.enter->data);
-    printf("\n");
-}
-
-int queue_main()
-{
-    //this is an implementation of circular queue
-    queue q;
-    q.enter = NULL;
-    q.exit = NULL;
-
-    while (1)
-    {
-        int n;
-        printf("1 - enqueue, 2 - display, 3 - dequeue: ");
-        scanf("%d", &n);
-
-        if (n == 1)
-        {
-            int d;
-            printf("Enter data                           : ");
-            scanf("%d", &d);
-            enqueue(&q, d);
-        }
-        else if (n == 2)
-        {
-            dispQueue(q);
-        }
-        else if (n == 3)
-        {
-            printf("Dequeued: %d\n", dequeue(&q));
         }
         else
         {
