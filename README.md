@@ -1,2 +1,2 @@
 # ds_lab3
-This will be my DS lab from third sem
+This is my DS classes and labs in 3rd sem
