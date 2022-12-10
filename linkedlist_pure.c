@@ -1,57 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-typedef struct NODE
+//this structure defines the data
+typedef struct
 {
-    int data;
-    struct NODE *next;
-}*node;
+    int value;
+}data;
 
-typedef struct STACK
+//this inserts the data x into location indicated by data pointer d
+void insertdata(data *d, data x)
 {
-    node n;
-}stack;
+    d->value = x.value;
+}
 
-typedef struct QUEUE
+//this returns the data with all values set to null or zero
+data getnull()
 {
-    node enter;
-    node exit;
-}queue;
+    data d;
+    d.value = 0;
+    return d;
+}
 
-void getnode(node *n);
-
-void display(node n);
-
-void insert(node *n, int pos, int x);
-void insertfront(node *n, int x);
-void insertend(node *n, int x);
-
-int delete(node *n, int pos);
-int deletevalue(node *n, int x);
-
-
-/*
-int main()
+//this asks the user to input the data and return it
+data getdata()
 {
-    //choice allows you to choose if you want to implement a stack or queue or just use the linked list
-    //basic_main(), stack_main() etc. can also be used as the main function if you want just one implementations
-    //to do that rename those functions to main() and delete the current main function
+    data d;
+    printf("Enter data                          : ");
+    scanf("%d", &d.value);
+    return d;
+}
 
-    int choice;
-    printf("1 - basic, 2 - stack, 3 - circ queue\n");
-    scanf("%d", &choice);
-
-    if (choice == 1)
+//this function should return 1 if the given inputs are identical
+//else return 0
+int datacmp(data x, data y)
+{
+    if (x.value == y.value)
     {
-        return basic_main();
-    }
-    else if (choice == 2)
-    {
-        return stack_main();
-    }
-    else if (choice == 3)
-    {
-        return queue_main();
+        return 1;
     }
     else 
     {
@@ -59,14 +44,37 @@ int main()
     }
 }
 
-*/
+//this prints the data as required
+void printdata(data d)
+{
+    printf("%d ", d.value);
+}
+
+//below, linked list is implemented for the data (which was defined above)
+
+typedef struct NODE
+{
+    data d;
+    struct NODE *next;
+}*node;
+
+void getnode(node *n);
+
+void display(node n);
+
+void insert(node *n, int pos, data x);
+void insertfront(node *n, data x);
+void insertend(node *n, data x);
+
+data delete(node *n, int pos);
+int deletevalue(node *n, data x);
 
 void getnode(node *n)
 {
     *n = (struct NODE *)malloc(sizeof(struct NODE));
 }
 
-void insert(node *n, int pos, int x)
+void insert(node *n, int pos, data x)
 {
     //if position is neg or exceeds the num of elements in list, insert end
     while(*n != NULL && pos != 0)
@@ -76,24 +84,24 @@ void insert(node *n, int pos, int x)
     }
     node temp = *n;
     getnode(n);
-    (*n)->data = x;
+    insertdata(&((*n)->d) ,x);
     (*n)->next = temp;
 }
 
-void insertfront(node *n, int x)
+void insertfront(node *n, data x)
 {
     node temp = *n;
     getnode(n);
-    (*n)->data = x;
+    (*n)->d = x;
     (*n)->next = temp;
 }
 
-void insertend(node *n, int x)
+void insertend(node *n, data x)
 {
     while(*n != NULL)
         n = &((*n)->next);
     getnode(n);
-    (*n)->data = x;
+    (*n)->d = x;
     (*n)->next = NULL;
 }
 
@@ -107,20 +115,22 @@ void display(node n)
     
     while(n != NULL)
     {
-        printf("-> %d ", n->data);
+        printf("-> ");
+        printdata(n->d);
         n = n->next;
     }
 
     printf("\n\n");
 }
 
-int delete(node *n, int pos)
+data delete(node *n, int pos)
 {
     //this checks for list empty condition
     if(*n == NULL)
     {
         //the list is empty, cant delete
-        return -1;
+        data d = getnull();
+        return d;
     }
 
     //if position is neg or exceeds the num of elements in list, delete end
@@ -130,18 +140,18 @@ int delete(node *n, int pos)
         pos--;
     }
     node temp = *n;
-    int temp2 = temp->data;
+    data temp2 = temp->d;
     *n = (*n)->next;
     free(temp);
     return temp2;
 }
 
-int deletevalue(node *n, int x)
+int deletevalue(node *n, data x) 
 {
     int count = 0;
     while(*n != NULL)
     {
-        if ((*n)->data == x)
+        if (datacmp(x, (*n)->d))
         {
             node temp = *n;
             *n = (*n)->next;
@@ -170,9 +180,7 @@ int main()
 
         if (n == 1)
         {
-            int d;
-            printf("Enter data                          : ");
-            scanf("%d", &d);
+            data d = getdata();
 
             //use the following to insert at the front
             //insertfront(&a, d);
@@ -195,10 +203,8 @@ int main()
         else if (n == 3)
         {
             //use the following to delete user input value(s) from the list
-            /*int d;
-            printf("Enter int: ");
-            scanf("%d", &d);
-            printf("%d elements deleted\n", deletevalue(&a, d));*/
+            data d = getdata();
+            printf("%d elements deleted\n", deletevalue(&a, d));
 
             //use the following to delete from the front
             //delete(&a, 0);
@@ -208,11 +214,11 @@ int main()
             //use the following to delete from user input position
             //for delete at front input pos = 0
             //for end input pos = negative (or pos exceeds number of elements in the list)
-            int pos;
+            /* int pos;
             printf("Enter position                      : ");
             scanf("%d", &pos);
             printf("\n");
-            delete(&a, pos);
+            delete(&a, pos);*/
         }
         else
         {
