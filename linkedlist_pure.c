@@ -7,6 +7,8 @@
 //In this linked list program, we define a custom datatype called data
 //data is a structure which can have anything inside e.g. student details
 //Currently data is a structure consisting of a just single integer named value
+//The benefit of using this approach is that we wouldn't need to 
+//change the linked list program even if we change the data definition
 //
 //user of this program can change the code accordingly to use whatever data they prefer
 //they would also change the following functions accordingly
