@@ -31,14 +31,22 @@ int priority(char x)
 int main()
 {
     char exp[100];
-    char *e, x;
+    char *e = exp, x;
     printf("Enter the expression : ");
-    scanf("%s",exp);
-    printf("\n");
-    e = exp;
+    scanf("%[^\n]s",exp);
+
+    // printf("the entered expression is %s", exp);
+    // return 0;
+
+    printf("The postfix expression is : \n");
     
     while(*e != '\0')
     {
+        if (*e == ' '){
+            e++;
+            continue;
+        }
+
         if(isalnum(*e))
             printf("%c ",*e);
         else if(*e == '(')

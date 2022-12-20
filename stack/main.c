@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int MAX = 10;
-int a[10];
+int MAX = 4;
+int a[4];
 int pos = -1;
 
 void push(int x){
     if(pos == MAX - 1){
-        printf("The stack if full\n%d was not pushed\n", x);
+        printf("Stack Overflow\n");
     }else{
         pos++;
         a[pos] = x;
@@ -34,21 +34,21 @@ void display(){
 
 int main(){
     while (1){
-        int choice = -1, x;
-        printf("Enter 0 to push, 1 to pop, 2 to display : \n");
-        scanf("%d", &choice);
+        int ch, x;
+        printf("Enter 0 to push, 1 to pop, 2 to display : ");
+        scanf("%d", &ch);
 
-        if (choice == 0){
-            printf("Enter number to push : ");
+        if (ch == 0){
             scanf("%d", &x);
             push(x);
-        }else if(choice == 1){
+        }else if(ch == 1){
             x = pop();
-            printf("The popped value is : %d\n", x);
-        }else if (choice == 2){
+            printf("popped %d\n", x);
+        }else if (ch == 2){
             display();
         }else{
             break;
         }
     }
+    return 0;
 }
