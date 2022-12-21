@@ -13,9 +13,8 @@ typedef struct{
 void enqueue(queue *Q, int x)
 {
     if (Q->front == -1){
-        Q->front++;
-        Q->rear++;
-        Q->q[(Q->rear)] = x;
+        Q->front = 0;
+        Q->q[++Q->rear] = x;
     }
     else if (Q->rear == MAX - 1)
     {
@@ -23,8 +22,7 @@ void enqueue(queue *Q, int x)
     }
     else
     {
-        Q->rear++;
-        Q->q[Q->rear] = x;
+        Q->q[++Q->rear] = x;
     }
 }
 
@@ -32,7 +30,7 @@ int dequeue(queue *Q)
 {
     if (Q->front == -1)
     {
-        printf("Queue empty, can't dequeue!");
+        printf("Queue empty, can't dequeue!\n");
         return -1;
     }
 
@@ -45,7 +43,7 @@ int dequeue(queue *Q)
     }
     else
     {
-        return Q->q[(Q->front)++];
+        return Q->q[Q->front++];
     }
 }
 
@@ -90,7 +88,7 @@ int main(){
             enqueue(&q, x);
             break;
         case 2:
-            printf("dequeued value : %d \n", dequeue(&q));
+            printf("dequeued %d\n", dequeue(&q));
             break;
         case 3:
             display(&q);
