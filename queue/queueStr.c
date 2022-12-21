@@ -30,7 +30,7 @@ int dequeue(queue *Q)
 {
     if (Q->front == -1)
     {
-        printf("Queue empty, can't dequeue!\n");
+        printf("Queue empty!\n");
         return -1;
     }
 
@@ -52,7 +52,7 @@ void display(queue *Q){
         return;
 
     for (int i = Q->front; i <= Q->rear; i++){
-        printf("%d ", Q->q[i]);
+        printf("-> %d ", Q->q[i]);
     }
     printf("\n");
 }
@@ -83,18 +83,15 @@ int main(){
 
         switch (ch)
         {
-        case 1:
-            scanf("%d", &x);
-            enqueue(&q, x);
-            break;
-        case 2:
-            printf("dequeued %d\n", dequeue(&q));
-            break;
-        case 3:
-            display(&q);
-            break;
-        default:
-            exit(0);
+        case 1: scanf("%d", &x);
+                enqueue(&q, x);
+                break;
+        case 2: x = dequeue(&q);
+                if (x != -1) printf("dequeued %d\n", x);
+                break;
+        case 3: display(&q);
+                break;
+        default: exit(0);
         }
     }
     return 0;
