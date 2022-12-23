@@ -1,6 +1,7 @@
 //what we learnt so far>>>
 
 1. ADTs for Data Structures
+    ADT - advanced data structure eg. Stack with push and pop functions
 2. Stack using array
 3. Queue using array   
     Circular Queue  
@@ -13,6 +14,6 @@
 9. Circular linked List
 
 This week -- dec 23 - 24
-    2d array    
+    2d array  -- tick
     tree
     binary tree

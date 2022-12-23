@@ -1,0 +1,19 @@
+tree --
+    collection of vertices and edges
+        vertex is a node
+        edge is the line connecting the vertices
+
+tree terminology
+    1. Root
+    2. Parent
+    3. Child
+    4. Siblings
+    5. Descendants
+    6. Ancestors -- every vertex encountered while moving towards the Root
+    7. Degree of a node - num of edges going out of a node
+    8. Internal and external nodes (aka leaf and non-leaf nodes)
+        - leaf node are nodes with degree 0, aka external node
+        - non leaf nodes are also called internal nodes
+    9. Levels
+    10. Height -- how many edges should we travel from the root to get to the nodes
+    11. Forest
