@@ -14,8 +14,8 @@ tree terminology
     8. Internal and external nodes (aka leaf and non-leaf nodes)
         - leaf node are nodes with degree 0, aka external node
         - non leaf nodes are also called internal nodes
-    9. Levels -- 
-    10. Height -- how many edges should we travel from the root to get to the nodes
+    9. Levels -- eg. root node is 0, the next one is level 1 and so on....
+    10. Height -- how many edges(maximum) should we travel from the root to get to the nodes
     11. Forest -- collection of trees
 
 
@@ -35,6 +35,12 @@ Representation of Trees - Array Representation
     for any node at index i,
         its parent is at floor (i/2)
 
+                       A(1)    
+                     /     \
+                  B(2)      C(3)
+                 /   \      /  \
+              D(4)  E(5)  F(6)  G(7)
+
 Representation of Trees - Linked Representation
     typedef struct node{
         struct node *left;
@@ -43,7 +49,8 @@ Representation of Trees - Linked Representation
     } NODE;
 
 Full tree vs Complete tree
-
+    full tree -- all nodes have either 2 or 0 offsprings
+    complete tree -- filled from left
 
 Tree traversal Methods
 
