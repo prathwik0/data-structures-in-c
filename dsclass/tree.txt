@@ -59,3 +59,18 @@ Tree traversal Methods
         * in-order(left subtree), visit a node, in-order(right subtree)
     -> Level-Order
         * visit the nodes level by level
+
+                       A    
+                     /    \
+                    B      C
+                  /  \    /  \
+                 D    E  F    G
+
+    -> Pre-Order
+        
+    -> Post-Order
+        
+    -> In-Order
+        
+    -> Level-Order
+       
