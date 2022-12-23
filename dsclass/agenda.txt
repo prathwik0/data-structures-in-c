@@ -1,0 +1,18 @@
+//what we learnt so far>>>
+
+1. ADTs for Data Structures
+2. Stack using array
+3. Queue using array   
+    Circular Queue  
+    Priority Queue
+4. recursion 
+5. Linked List
+6. Stack using a linked List
+7. Queueu usinga linked List
+8. Singly and Doubly linked List
+9. Circular linked List
+
+This week -- dec 23 - 24
+    2d array    
+    tree
+    binary tree
