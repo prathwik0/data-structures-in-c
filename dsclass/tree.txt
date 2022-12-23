@@ -16,4 +16,12 @@ tree terminology
         - non leaf nodes are also called internal nodes
     9. Levels
     10. Height -- how many edges should we travel from the root to get to the nodes
-    11. Forest
+    11. Forest -- collection of trees
+
+
+Binary trees :
+    - a tree with degree 2 
+        ie. every node has utmost 2 nodes (left node and right node)
+    - relation b/w Height and num or nodes
+        Min nodes = h + 1
+        max nodes = 2^(h + 1) - 1
