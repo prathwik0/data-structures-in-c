@@ -67,10 +67,10 @@ Tree traversal Methods
                  D    E  F    G
 
     -> Pre-Order
-        
+            A B D E C F G
     -> Post-Order
-        
+            D E B F G C A 
     -> In-Order
-        
+            D B E A F C G 
     -> Level-Order
-       
+            A B C D E F G 
