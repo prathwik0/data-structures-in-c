@@ -64,7 +64,6 @@ typedef struct
 
 void enqueue(queue *q, node x);
 node dequeue(queue *q);
-
 //-------------------This is the code for the queue------------------------//
 
 void levelorder(node root){
@@ -105,16 +104,16 @@ int main()
     //   /   \      /   \
     // (10) (11)  (12)  (13)  
     
-    printf("\nPreorder:  ");
+    printf("\nPreorder:   ");
     preorder(root);
 
-    printf("\nPostorder: ");
+    printf("\nPostorder:  ");
     postorder(root);
 
-    printf("\nInorder:   ");
+    printf("\nInorder:    ");
     inorder(root);
 
-    printf("\nLevelorder:   ");
+    printf("\nLevelorder: ");
     levelorder(root);
     
     return 0;
