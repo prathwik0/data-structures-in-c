@@ -72,11 +72,11 @@ void levelorder(node root){
     q.front = NULL;
     q.rear = NULL;
 
-    while(root != NULL)
+    while(root)
     {
         printf("%d ", root->data);
-        enqueue(&q, root->left);
-        enqueue(&q, root->right);
+        if (root->left) enqueue(&q, root->left);
+        if (root->right) enqueue(&q, root->right);
 
         root = dequeue(&q);
     }
@@ -92,12 +92,18 @@ int main()
     root->right = newNode(5);
     root->left->left = newNode(1);
     root->left->right = newNode(4);
+    root->left->left->left = newNode(10);
+    root->left->left->right = newNode(11);
+    root->left->right->left = newNode(12);
+    root->left->right->right = newNode(13);
 
-    //            (3)    
-    //          /     \
-    //       (2)      (5)
-    //      /   \      /  \
-    //    (1)   (4)  (-)  (-)
+    //                 (3)    
+    //            /           \
+    //         (2)              (5)
+    //       /      \          /   \
+    //    (1)        (4)     (-)    (-)
+    //   /   \      /   \
+    // (10) (11)  (12)  (13)  
     
     printf("\nPreorder:  ");
     preorder(root);
