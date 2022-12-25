@@ -6,31 +6,31 @@ typedef struct NODE
     struct NODE *left;
     struct NODE *right;
     int data;
-}*node;
+} *node;
 
 typedef struct NODEQ
 {
     node d;
     struct NODEQ *next;
-}*nodeq;
+} *nodeq;
 
 void getnode(nodeq *n)
 {
     *n = (struct NODEQ *)malloc(sizeof(struct NODEQ));
 }
 
-typedef struct 
+typedef struct
 {
-    nodeq front; 
-    nodeq rear;  
-}queue;
+    nodeq front;
+    nodeq rear;
+} queue;
 
 void enqueue(queue *q, node x);
 node dequeue(queue *q);
 
 void enqueue(queue *q, node x)
 {
-    //this initializes the queue if there are no elements
+    // this initializes the queue if there are no elements
     if (q->front == NULL)
     {
         getnode(&(q->front));
@@ -46,11 +46,11 @@ void enqueue(queue *q, node x)
         q->front->next->d = x;
         q->front->next->next = q->rear;
 
-        //this sets front to the new front 
+        // this sets front to the new front
         q->front = q->front->next;
 
-        //we could have done the above before initializing the new nodeq but 
-        //but then I wouldn't get to use ...->...->...->...
+        // we could have done the above before initializing the new nodeq but
+        // but then I wouldn't get to use ...->...->...->...
     }
 }
 
