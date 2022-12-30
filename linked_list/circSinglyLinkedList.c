@@ -21,11 +21,11 @@ void get_node(node *n, int data)
 
 void display(list *a);
 
-void insertFront(list *a, int x);
+void insertFront(list *a, int data);
 
 int deleteFront(list *a);
 
-void insertRear(list *a, int x);
+void insertRear(list *a, int data);
 
 int deleteRear(list *a);
 
@@ -129,7 +129,7 @@ int deleteFront(list *a)
     return temp;
 }
 
-void insertRear(list *a, int x)
+void insertRear(list *a, int data)
 {
     node cur = a->rear;
 
@@ -144,7 +144,7 @@ void insertRear(list *a, int x)
 
     get_node(&(cur->next), data);
     cur->next->next = a->front;
-    a->rear = cur;
+    a->rear = cur->next;
 }
 
 int deleteRear(list *a)
