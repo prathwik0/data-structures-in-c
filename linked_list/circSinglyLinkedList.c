@@ -46,7 +46,7 @@ int main()
             int d;
             scanf("%d", &d);
 
-            insertFront(&a, d);
+            insertRear(&a, d);
         }
         else if (n == 2)
         {
@@ -54,7 +54,7 @@ int main()
         }
         else if (n == 3)
         {
-            printf("deleted %d\n", deleteFront(&a));
+            printf("deleted %d\n", deleteRear(&a));
         }
         else
         {
@@ -122,6 +122,59 @@ int deleteFront(list *a)
     }
 
     a->front = cur->next;
+    a->rear->next = a->front;
+
+    int temp = cur->d;
+    free(cur);
+    return temp;
+}
+
+void insertRear(list *a, int x)
+{
+    node cur = a->rear;
+
+    if (cur == NULL)
+    {
+        get_node(&cur, data);
+        cur->next = cur;
+        a->front = cur;
+        a->rear = cur;
+        return;
+    }
+
+    get_node(&(cur->next), data);
+    cur->next->next = a->front;
+    a->rear = cur;
+}
+
+int deleteRear(list *a)
+{
+    node cur = a->front;
+
+    if (cur == NULL)
+    {
+        return -1;
+    }
+
+    if (cur->next == cur)
+    {
+        int temp = cur->d;
+
+        a->front = NULL;
+        a->rear = NULL;
+
+        free(cur);
+
+        return temp;
+    }
+
+    while (cur->next != a->rear)
+    {
+        cur = cur->next;
+    }
+
+    a->rear = cur;
+    cur = cur->next;
     a->rear->next = a->front;
 
     int temp = cur->d;
