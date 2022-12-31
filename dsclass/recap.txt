@@ -4,5 +4,8 @@ Types of data types:
     1. Primitive - int, char, float, double, long, bool, pointer
     2. User defined - defines a custom data type (abstract) - when a variable of this type is created it is the instance of this data type.
 
-Linked list - abstract datatypes - eg. node and list
+        array
+        pointer
+        struct
 
+Linked list - abstract datatypes - eg. node and list
