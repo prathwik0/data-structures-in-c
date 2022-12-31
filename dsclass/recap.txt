@@ -1,0 +1,5 @@
+C language
+
+Types of data types:
+    1. Primitive - int, char, float, double, long, bool, pointer
+    2. User defined 
