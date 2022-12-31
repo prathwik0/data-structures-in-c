@@ -3,16 +3,17 @@
 
 #define MAX 10
 
-typedef struct{
+typedef struct
+{
     int front;
     int rear;
     int q[MAX];
-}queue;
-
+} queue;
 
 void enqueue(queue *Q, int x)
 {
-    if (Q->front == -1){
+    if (Q->front == -1)
+    {
         Q->front = 0;
         Q->q[++Q->rear] = x;
     }
@@ -50,13 +51,14 @@ int dequeue(queue *Q)
     }
 }
 
-void display(queue *Q){
+void display(queue *Q)
+{
     if (Q->front == -1)
         return;
 
     int i = Q->front;
     printf("-> %d ", Q->q[i]);
-    
+
     while (i != Q->rear)
     {
         i = (i + 1) % MAX;
@@ -65,28 +67,35 @@ void display(queue *Q){
     printf("\n");
 }
 
-int main(){
+int main()
+{
     queue q;
     q.front = -1;
     q.rear = -1;
 
     int ch, x;
 
-    while(1){
+    while (1)
+    {
         printf("Enqueue(1),Dequeue(2),Display(3): ");
         scanf("%d", &ch);
 
         switch (ch)
         {
-        case 1: scanf("%d", &x);
-                enqueue(&q, x);
-                break;
-        case 2: x = dequeue(&q);
-                if (x != -1) printf("dequeued %d\n", x);
-                break;
-        case 3: display(&q);
-                break;
-        default: exit(0);
+        case 1:
+            scanf("%d", &x);
+            enqueue(&q, x);
+            break;
+        case 2:
+            x = dequeue(&q);
+            if (x != -1)
+                printf("dequeued %d\n", x);
+            break;
+        case 3:
+            display(&q);
+            break;
+        default:
+            exit(0);
         }
     }
     return 0;
