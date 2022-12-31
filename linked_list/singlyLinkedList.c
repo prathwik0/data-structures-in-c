@@ -5,12 +5,12 @@ typedef struct NODE
 {
     int d;
     struct NODE *next;
-}*node;
+} *node;
 
 typedef struct
 {
     struct NODE *head;
-}list;
+} list;
 
 void getnode(node *n)
 {
@@ -47,7 +47,7 @@ int main()
         }
         else if (n == 3)
         {
-            printf("deleted %d\n",deleteFront(&a));
+            printf("deleted %d\n", deleteFront(&a));
         }
         else
         {
@@ -70,8 +70,8 @@ void display(list a)
     {
         printf("no elements present");
     }
-    
-    while(a.head != NULL)
+
+    while (a.head != NULL)
     {
         printf("-> ");
         printf("%d", a.head->d);
@@ -83,16 +83,15 @@ void display(list a)
 
 int deleteFront(list *a)
 {
-    if(a->head == NULL)
+    if (a->head == NULL)
     {
         return -1;
     }
-    
+
     node temp = a->head;
     int temp2 = temp->d;
     a->head = a->head->next;
-    
+
     free(temp);
     return temp2;
 }
-
