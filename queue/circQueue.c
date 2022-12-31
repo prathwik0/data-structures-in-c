@@ -16,16 +16,17 @@ void enqueue(queue *Q, int x)
     {
         Q->front = 0;
         Q->q[++Q->rear] = x;
+        return;
     }
-    else if ((Q->rear + 1) % MAX == Q->front)
+
+    if ((Q->rear + 1) % MAX == Q->front)
     {
         printf("Queue overflow!\n");
+        return;
     }
-    else
-    {
-        Q->rear = (Q->rear + 1) % MAX;
-        Q->q[Q->rear] = x;
-    }
+
+    Q->rear = (Q->rear + 1) % MAX;
+    Q->q[Q->rear] = x;
 }
 
 int dequeue(queue *Q)
@@ -43,12 +44,10 @@ int dequeue(queue *Q)
         Q->rear = -1;
         return Q->q[temp];
     }
-    else
-    {
-        int temp = Q->front;
-        Q->front = (Q->front + 1) % MAX;
-        return Q->q[temp];
-    }
+
+    int temp = Q->front;
+    Q->front = (Q->front + 1) % MAX;
+    return Q->q[temp];
 }
 
 void display(queue *Q)
