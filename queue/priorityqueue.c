@@ -3,41 +3,43 @@
 
 #define MAX 100
 
-typedef struct{
+typedef struct
+{
     int front;
     int rear;
     int q[MAX];
-}queue;
-
+} queue;
 
 void enqueue(queue *Q, int x)
 {
-    if (Q->front == -1){
+    if (Q->front == -1)
+    {
         Q->front++;
         Q->rear++;
         Q->q[(Q->rear)] = x;
+        return;
     }
-    else if (Q->rear == MAX - 1)
+
+    if (Q->rear == MAX - 1)
     {
         printf("Queue overflow!\n");
+        return;
     }
-    else
-    {
-        int f = Q->front;
-        int r = Q->rear;
 
-        while(Q->q[f] <= x && f <= r)
-        {
-            f++;
-        }
-        while(r >= f)
-        {
-            Q->q[r+1] = Q->q[r];
-            r--;
-        }
-        Q->q[f] = x;
-        Q->rear++;
+    int cur = Q->front;
+    int r = Q->rear;
+
+    while (Q->q[cur] <= x && cur <= r)
+    {
+        cur++;
     }
+    while (r >= cur)
+    {
+        Q->q[r + 1] = Q->q[r];
+        r--;
+    }
+    Q->q[cur] = x;
+    Q->rear++;
 }
 
 int dequeue(queue *Q)
@@ -61,20 +63,23 @@ int dequeue(queue *Q)
     }
 }
 
-void display(queue *Q){
+void display(queue *Q)
+{
     if (Q->front == -1)
         return;
 
-    for (int i = Q->front; i <= Q->rear; i++){
+    for (int i = Q->front; i <= Q->rear; i++)
+    {
         printf("%d ", Q->q[i]);
     }
     printf("\n");
 }
 
-void arrange(queue *Q){
+void arrange(queue *Q)
+{
     for (int i = Q->front; i <= Q->rear; i++)
     {
-        Q->q[i - Q->front] = Q->q[i]; 
+        Q->q[i - Q->front] = Q->q[i];
     }
     Q->rear = Q->rear - Q->front;
     Q->front = 0;
@@ -83,15 +88,17 @@ void arrange(queue *Q){
     display(Q);
 }
 
-int main(){
-    
+int main()
+{
+
     queue q;
     q.front = -1;
     q.rear = -1;
 
     int ch, x;
 
-    while(1){
+    while (1)
+    {
         printf("Enqueue(1),Dequeue(2),Display(3): ");
         scanf("%d", &ch);
 
