@@ -88,10 +88,11 @@ int deleteFront(list *a)
         return -1;
     }
 
-    node temp = a->head;
-    int temp2 = temp->d;
+    node cur = a->head;
+    int temp = cur->d;
+
     a->head = a->head->next;
 
-    free(temp);
-    return temp2;
+    free(cur);
+    return temp;
 }
