@@ -45,7 +45,7 @@ int main()
             int d;
             scanf("%d", &d);
 
-            insertRear(&a, d);
+            insertFront(&a, d);
         }
         else if (n == 2)
         {
@@ -110,7 +110,7 @@ void insertFront(list *a, int data)
     cur->right->right = a->front;
     cur->right->left = cur;
 
-    cur->right->right->left = cur->right;
+    a->front->left = cur->right;
 
     a->front = cur->right;
 }
