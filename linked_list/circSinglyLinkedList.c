@@ -13,10 +13,11 @@ typedef struct
     node rear;
 } list;
 
-void get_node(node *n, int data)
+node get_node(int data)
 {
-    *n = (struct NODE *)malloc(sizeof(struct NODE));
-    (*n)->d = data;
+    node n = (struct NODE *)malloc(sizeof(struct NODE));
+    n->d = data;
+    return n;
 }
 
 void display(list *a);
@@ -88,14 +89,14 @@ void insertFront(list *a, int data)
 
     if (cur == NULL)
     {
-        get_node(&cur, data);
+        cur = get_node(data);
         cur->next = cur;
         a->front = cur;
         a->rear = cur;
         return;
     }
 
-    get_node(&(cur->next), data);
+    cur->next = get_node(data);
     cur->next->next = a->front;
     a->front = cur->next;
 }
@@ -135,14 +136,14 @@ void insertRear(list *a, int data)
 
     if (cur == NULL)
     {
-        get_node(&cur, data);
+        cur = get_node(data);
         cur->next = cur;
         a->front = cur;
         a->rear = cur;
         return;
     }
 
-    get_node(&(cur->next), data);
+    cur->next = get_node(data);
     cur->next->next = a->front;
     a->rear = cur->next;
 }
