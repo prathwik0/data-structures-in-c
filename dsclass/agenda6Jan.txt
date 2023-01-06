@@ -1,0 +1,13 @@
+Binary Search Tree
+Height of a BST
+Implementing the search, add and delete functions for a binary Tree 
+
+Level order traversal
+    We need a queue!
+    Programming by using multiple .c and .h files
+
+Separating the header and implementation files 
+    Compiling and Linking multiple files
+
+Expression Trees
+    Trees to express and evaluate Algebraic and Boolean expressions
