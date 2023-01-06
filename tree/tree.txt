@@ -82,3 +82,13 @@ Tree traversal Methods
     -> Level-Order
             A B C D E F G 
             we can do level order traversal using a queue
+
+
+Binary Search Tree - Properties:
+    * all nodes on the left of a root are lesser than the root
+    * all nodes on the right of the root are greater than the root
+
+    * BST doesn't contain duplicates
+    * inorder traversal returns a sorted list
+
+        - Binary Search Tree - Recursive Search
