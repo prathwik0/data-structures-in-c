@@ -6,19 +6,21 @@ typedef struct NODE
     struct NODE *left;
     struct NODE *right;
     int data;
-}*node;
+} *node;
 
 node newNode(int data)
 {
-    node temp = (struct NODE*)malloc(sizeof(struct NODE));
+    node temp = (struct NODE *)malloc(sizeof(struct NODE));
     temp->data = data;
     temp->left = NULL;
     temp->right = NULL;
     return temp;
 }
 
-void preorder(node root){
-    if (root == NULL){
+void preorder(node root)
+{
+    if (root == NULL)
+    {
         return;
     }
     printf("%d ", root->data);
@@ -26,8 +28,10 @@ void preorder(node root){
     preorder(root->right);
 }
 
-void postorder(node root){
-    if (root == NULL){
+void postorder(node root)
+{
+    if (root == NULL)
+    {
         return;
     }
     postorder(root->left);
@@ -35,8 +39,10 @@ void postorder(node root){
     printf("%d ", root->data);
 }
 
-void inorder(node root){
-    if (root == NULL){
+void inorder(node root)
+{
+    if (root == NULL)
+    {
         return;
     }
     inorder(root->left);
@@ -49,43 +55,46 @@ typedef struct NODEQ
 {
     node d;
     struct NODEQ *next;
-}*nodeq;
+} *nodeq;
 
 void getnode(nodeq *n)
 {
     *n = (struct NODEQ *)malloc(sizeof(struct NODEQ));
 }
 
-typedef struct 
+typedef struct
 {
-    nodeq front; 
-    nodeq rear;  
-}queue;
+    nodeq front;
+    nodeq rear;
+} queue;
 
 void enqueue(queue *q, node x);
 node dequeue(queue *q);
 //-------------------This is the code for the queue------------------------//
 
-void levelorder(node root){
+void levelorder(node root)
+{
     queue q;
     q.front = NULL;
     q.rear = NULL;
 
-    while(root)
+    while (root)
     {
         printf("%d ", root->data);
-        if (root->left) enqueue(&q, root->left);
-        if (root->right) enqueue(&q, root->right);
+        if (root->left)
+            enqueue(&q, root->left);
+        if (root->right)
+            enqueue(&q, root->right);
 
         root = dequeue(&q);
     }
 }
- 
+
 int main()
 {
     node root;
     int x;
- 
+
     root = newNode(3);
     root->left = newNode(2);
     root->right = newNode(5);
@@ -96,14 +105,14 @@ int main()
     root->left->right->left = newNode(12);
     root->left->right->right = newNode(13);
 
-    //                 (3)    
+    //                 (3)
     //            /            \
     //         (2)              (5)
     //       /      \          /    \
     //    (1)        (4)     (-)     (-)
     //   /   \      /   \
-    // (10) (11)  (12)  (13)  
-    
+    // (10) (11)  (12)  (13)
+
     printf("\nPreorder:   ");
     preorder(root);
 
@@ -115,13 +124,13 @@ int main()
 
     printf("\nLevelorder: ");
     levelorder(root);
-    
+
     return 0;
 }
 
 void enqueue(queue *q, node x)
 {
-    //this initializes the queue if there are no elements
+    // this initializes the queue if there are no elements
     if (q->front == NULL)
     {
         getnode(&(q->front));
@@ -137,11 +146,11 @@ void enqueue(queue *q, node x)
         q->front->next->d = x;
         q->front->next->next = q->rear;
 
-        //this sets front to the new front 
+        // this sets front to the new front
         q->front = q->front->next;
 
-        //we could have done the above before initializing the new nodeq but 
-        //but then I wouldn't get to use ...->...->...->...
+        // we could have done the above before initializing the new nodeq but
+        // but then I wouldn't get to use ...->...->...->...
     }
 }
 
