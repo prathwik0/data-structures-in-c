@@ -93,7 +93,7 @@ void insertFront(list *a, int data)
 {
     node cur = a->front;
 
-    get_node(&(cur), data);
+    cur = get_node(data);
 
     cur->left = NULL;
     cur->right = a->front;
@@ -136,7 +136,7 @@ void insertRear(list *a, int data)
 
     if (cur == NULL)
     {
-        get_node(&(cur), data);
+        cur = get_node(data);
 
         cur->left = NULL;
         cur->right = NULL;
@@ -148,7 +148,7 @@ void insertRear(list *a, int data)
     while (cur->right != NULL)
         cur = cur->right;
 
-    get_node(&(cur->right), data);
+    cur->right = get_node(data);
 
     cur->right->right = NULL;
     cur->right->left = cur;
