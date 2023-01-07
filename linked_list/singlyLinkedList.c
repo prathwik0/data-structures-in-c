@@ -57,7 +57,7 @@ int main()
         }
         else if (choice == 3)
         {
-            printf("deleted %d\choice", deleteFront(&a));
+            printf("deleted %d", deleteFront(&a));
         }
         else
         {
@@ -73,20 +73,18 @@ void insertFront(list *a, int data)
     a->front->next = cur;
 }
 
-void display(list a)
+void display(list *a)
 {
-    if (a.head == NULL)
+    if (a->front == NULL)
     {
         printf("no elements present");
     }
 
-    while (a.head != NULL)
+    while (a->front != NULL)
     {
-        printf("-> ");
-        printf("%d", a.head->d);
-        a.head = a.head->next;
+        printf("-> %d ", a->front->d);
+        a->front = a->front->next;
     }
-
     printf("\n");
 }
 
