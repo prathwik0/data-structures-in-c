@@ -6,15 +6,17 @@ typedef struct NODE
     int d;
     struct NODE *next;
 } *node;
-
 typedef struct
 {
-    struct NODE *head;
+    node front; // struct NODE* front;
 } list;
 
-void getnode(node *n)
+node getnode(int data)
 {
-    *n = (struct NODE *)malloc(sizeof(struct NODE));
+    node n = (struct NODE *)malloc(sizeof(struct NODE));
+    n->d = data;
+    // n->next = NULL;
+    return n;
 }
 
 void display(list a);
@@ -26,28 +28,36 @@ int deleteFront(list *a);
 int main()
 {
     list a;
-    a.head = NULL;
+    a.front = NULL;
 
     while (1)
     {
-        int n;
+        int choice;
         printf("1 - insert, 2 - display, 3 - delete : ");
-        scanf("%d", &n);
+        scanf("%d", &choice);
 
-        if (n == 1)
-        {
-            int d;
-            scanf("%d", &d);
+        /*
+        switch(choice)
+        case(1):
+        case(2):
+        case(3):
+        default:
+        */
 
-            insertFront(&a, d);
-        }
-        else if (n == 2)
+        if (choice == 1)
         {
-            display(a);
+            int data;
+            scanf("%d", &data);
+
+            insertFront(&a, data);
         }
-        else if (n == 3)
+        else if (choice == 2)
         {
-            printf("deleted %d\n", deleteFront(&a));
+            display(&a);
+        }
+        else if (choice == 3)
+        {
+            printf("deleted %d\choice", deleteFront(&a));
         }
         else
         {
@@ -56,12 +66,11 @@ int main()
     }
 }
 
-void insertFront(list *a, int x)
+void insertFront(list *a, int data)
 {
-    node temp = a->head;
-    getnode(&(a->head));
-    a->head->d = x;
-    a->head->next = temp;
+    node cur = a->front;
+    a->front = getnode(data);
+    a->front->next = cur;
 }
 
 void display(list a)

@@ -13,10 +13,11 @@ typedef struct
     node front;
 } list;
 
-void get_node(node *n, int data)
+node get_node(int data)
 {
-    *n = (struct NODE *)malloc(sizeof(struct NODE));
-    (*n)->d = data;
+    node n = (struct NODE *)malloc(sizeof(struct NODE));
+    n->d = data;
+    return n;
 }
 
 void display(list *a);

@@ -9,7 +9,7 @@ typedef struct NODE
 
 typedef struct
 {
-    node front;
+    struct NODE *front;
     node rear;
 } list;
 
