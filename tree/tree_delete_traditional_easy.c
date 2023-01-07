@@ -108,6 +108,7 @@ node del(node root)
     return root;
 }
 
+// wrapper over del
 void delete(node *root, int key)
 {
     node *temp = rsearch(root, key);

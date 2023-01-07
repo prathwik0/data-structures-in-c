@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #define COUNT 4
 
 typedef struct NODE
@@ -107,6 +108,7 @@ void del(node *root)
     return del(successor);
 }
 
+// wrapper over del
 void delete(node *root, int key)
 {
     del(rsearch(root, key));
@@ -114,6 +116,11 @@ void delete(node *root, int key)
 
 int main()
 {
+    clock_t start, end;
+    double elapsed;
+
+    start = clock(); // Start the clock
+
     node root;
     int x;
 
@@ -145,6 +152,11 @@ int main()
 
     printf("\nInorder:   ");
     inorder(root);
+
+    end = clock(); // End the clock
+
+    elapsed = (double)(end - start) / CLOCKS_PER_SEC; // Calculate elapsed time
+    printf("\nElapsed time: %f seconds\n", elapsed);
 
     return 0;
 }

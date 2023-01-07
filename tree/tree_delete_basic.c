@@ -88,6 +88,7 @@ void del(node *root)
     *root = temp;
 }
 
+// wrapper over del
 node delete(node *root, int key)
 {
     node *temp = rsearch(root, key);
@@ -123,7 +124,7 @@ int main()
     //              \
     //              (10)
 
-    node temp = delete (&root, 8);
+    node temp = delete (&root, 9);
     printf("\ndeleted %d\n", temp->data);
 
     print2D(root);
