@@ -32,24 +32,24 @@ void inorder(node root)
     inorder(root->right);
 }
 
-node rsearch(node n, int key)
+node *rsearch(node *n, int key)
 {
-    if (n == NULL)
+    if (*n == NULL)
     {
         return NULL;
     }
-    if (key == n->data)
+    if (key == (*n)->data)
     {
         return n;
     }
 
-    if (key < n->data)
+    if (key < (*n)->data)
     {
-        return rsearch(n->left, key);
+        return rsearch(&((*n)->left), key);
     }
     else
     {
-        return rsearch(n->right, key);
+        return rsearch(&((*n)->right), key);
     }
 }
 
@@ -109,11 +109,7 @@ void del(node *root)
 
 void delete(node *root, int key)
 {
-    node n = rsearch(*root, key);
-    if (n != NULL)
-    {
-        del(&n);
-    }
+    del(rsearch(root, key));
 }
 
 int main()
@@ -125,10 +121,11 @@ int main()
     root->left = newNode(8);
     root->right = newNode(14);
     root->left->left = newNode(5);
-    root->left->right = newNode(10);
+    root->left->right = newNode(11);
     root->left->left->left = newNode(1);
     root->left->left->right = newNode(6);
     root->left->right->left = newNode(9);
+    root->left->right->left->right = newNode(10);
     root->left->right->right = newNode(12);
     root->right->right = newNode(145);
 
@@ -136,11 +133,13 @@ int main()
     //            /            \
     //         (8)              (14)
     //       /      \          /    \
-    //    (5)        (10)     (-)    (145)
+    //    (5)        (11)     (-)    (145)
     //   /   \      /   \
     // (1)   (6)  (9)  (12)
+    //              \
+    //              (10)
 
-    delete (&root, 10);
+    delete (&root, 9);
 
     print2D(root);
 
