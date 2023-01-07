@@ -90,15 +90,15 @@ void display(list *a)
 
 int deleteFront(list *a)
 {
-    if (a->head == NULL)
+    if (a->front == NULL)
     {
         return -1;
     }
 
-    node cur = a->head;
+    node cur = a->front;
     int temp = cur->d;
 
-    a->head = a->head->next;
+    a->front = a->front->next;
 
     free(cur);
     return temp;
