@@ -19,7 +19,7 @@ node getnode(int data)
     return n;
 }
 
-void display(list a);
+void display(list *a);
 
 void insertFront(list *a, int x);
 
@@ -57,7 +57,7 @@ int main()
         }
         else if (choice == 3)
         {
-            printf("deleted %d", deleteFront(&a));
+            printf("deleted %d\n", deleteFront(&a));
         }
         else
         {
@@ -75,15 +75,16 @@ void insertFront(list *a, int data)
 
 void display(list *a)
 {
-    if (a->front == NULL)
+    node cur = a->front;
+    if (cur == NULL)
     {
         printf("no elements present");
     }
 
-    while (a->front != NULL)
+    while (cur != NULL)
     {
-        printf("-> %d ", a->front->d);
-        a->front = a->front->next;
+        printf("-> %d ", cur->d);
+        cur = cur->next;
     }
     printf("\n");
 }
