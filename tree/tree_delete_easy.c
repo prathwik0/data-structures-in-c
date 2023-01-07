@@ -43,7 +43,6 @@ node *rsearch(node *n, int key)
     {
         return n;
     }
-
     if (key < cur->data)
     {
         return rsearch(&(cur->left), key);
@@ -105,7 +104,7 @@ void del(node *root)
 
     (*root)->data = (*successor)->data;
 
-    del(successor);
+    return del(successor);
 }
 
 void delete(node *root, int key)
@@ -140,7 +139,7 @@ int main()
     //              \
     //              (10)
 
-    delete (&root, 9);
+    delete (&root, 8);
 
     print2D(root);
 
