@@ -65,7 +65,7 @@ int main()
         {
             int key;
             scanf("%d", &key);
-            deleteElement(&a, key);
+            deletePosition(&a, key);
         }
         else
         {
@@ -128,7 +128,6 @@ void deleteFront(list *a)
     }
 
     a->front = a->front->next;
-
     free(cur);
 }
 
@@ -162,6 +161,23 @@ void deleteRear(list *a)
 
     free(temp);
 }
+
+// void deletePosition(list *a, int key)
+// {
+//     node *n = &(a->front);
+//     while (*n != NULL && key > 0)
+//     {
+//         n = &((*n)->next);
+//         key--;
+//     }
+//     if (*n == NULL || key != 0)
+//     {
+//         return;
+//     }
+//     node temp = (*n);
+//     *n = (*n)->next;
+//     free(temp);
+// }
 
 void deletePosition(list *a, int key)
 {
@@ -218,7 +234,7 @@ void deleteElement(list *a, int element)
     }
 
     // check first node
-    if (cur->next == NULL && key != cur->d)
+    if (cur->next == NULL && element != cur->d)
     {
         printf("element not present\n");
         return;
