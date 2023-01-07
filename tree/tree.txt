@@ -92,3 +92,20 @@ Binary Search Tree - Properties:
     * inorder traversal returns a sorted list
 
         - Binary Search Tree - Recursive Search
+            - iterative search...
+
+        - insertion , deletion, gethieight, min, max, inorder succ, pred
+
+Expression Trees
+
+Precedence
+Associativity
+
+
+
+rnd num generator
+
+srand(time(0));
+
+
+n->data = rand()%500;
