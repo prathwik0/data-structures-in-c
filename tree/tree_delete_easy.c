@@ -34,22 +34,23 @@ void inorder(node root)
 
 node *rsearch(node *n, int key)
 {
-    if (*n == NULL)
+    node cur = *n;
+    if (cur == NULL)
     {
         return NULL;
     }
-    if (key == (*n)->data)
+    if (key == cur->data)
     {
         return n;
     }
 
-    if (key < (*n)->data)
+    if (key < cur->data)
     {
-        return rsearch(&((*n)->left), key);
+        return rsearch(&(cur->left), key);
     }
     else
     {
-        return rsearch(&((*n)->right), key);
+        return rsearch(&(cur->right), key);
     }
 }
 
