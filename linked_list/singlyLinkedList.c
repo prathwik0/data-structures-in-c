@@ -76,9 +76,11 @@ void insertFront(list *a, int data)
 void display(list *a)
 {
     node cur = a->front;
+
     if (cur == NULL)
     {
         printf("no elements present");
+        return;
     }
 
     while (cur != NULL)
@@ -91,8 +93,10 @@ void display(list *a)
 
 int deleteFront(list *a)
 {
+    // empty list condition
     if (a->front == NULL)
     {
+        // printf("empty list\n");
         return -1;
     }
 
