@@ -22,14 +22,14 @@ node getnode(int data)
 void display(list *a);
 
 void insertFront(list *a, int x);
-
 void insertRear(list *a, int x);
 
 void deleteFront(list *a);
-
 void deleteRear(list *a);
-
 void deletePosition(list *a, int key);
+void deleteElement(list *a, int element);
+void deleteAfterPosition(list *a, int k);
+void deleteBeforePosition(list *a, int k);
 
 int main()
 {
@@ -65,7 +65,7 @@ int main()
         {
             int key;
             scanf("%d", &key);
-            deletePosition(&a, key);
+            deleteElement(&a, key);
         }
         else
         {
@@ -116,6 +116,22 @@ void insertRear(list *a, int x)
     cur->next = getnode(x);
 }
 
+void deleteFront(list *a)
+{
+    node cur = a->front;
+
+    // empty list condition
+    if (cur == NULL)
+    {
+        // printf("empty list\n");
+        return;
+    }
+
+    a->front = a->front->next;
+
+    free(cur);
+}
+
 void deleteRear(list *a)
 {
     node cur = a->front;
@@ -157,12 +173,12 @@ void deletePosition(list *a, int key)
         return;
     }
 
+    // check first node
     if (cur->next == NULL && key != 0)
     {
         printf("invalid key\n");
         return;
     }
-
     if (key == 0)
     {
         a->front = a->front->next;
@@ -191,18 +207,62 @@ void deletePosition(list *a, int key)
     free(temp);
 }
 
-void deleteFront(list *a)
+void deleteElement(list *a, int element)
 {
     node cur = a->front;
 
-    // empty list condition
+    // list empty condition
     if (cur == NULL)
     {
-        // printf("empty list\n");
         return;
     }
 
-    a->front = a->front->next;
+    // check first node
+    if (cur->next == NULL && key != cur->d)
+    {
+        printf("element not present\n");
+        return;
+    }
+    if (element == cur->d)
+    {
+        a->front = a->front->next;
+        free(cur);
+        return;
+    }
 
-    free(cur);
+    while (cur->next->next != NULL && cur->next->d != element)
+    {
+        cur = cur->next;
+    }
+
+    if (cur->next->d != element)
+    {
+        printf("element not present\n");
+        return;
+    }
+
+    node temp = cur->next;
+
+    cur->next = cur->next->next;
+
+    free(temp);
 }
+
+// void deleteElement(list *a, int element)
+// {
+//     node *n = &(a->front);
+//     while (*n != NULL)
+//     {
+//         if ((*n)->d == element)
+//         {
+//             node temp = *n;
+//             *n = (*n)->next;
+//             free(temp);
+//             return;
+//         }
+//         else
+//         {
+//             n = &((*n)->next);
+//         }
+//     }
+// }
