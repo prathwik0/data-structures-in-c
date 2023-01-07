@@ -15,7 +15,7 @@ node getnode(int data)
 {
     node n = (struct NODE *)malloc(sizeof(struct NODE));
     n->d = data;
-    // n->next = NULL;
+    n->next = NULL;
     return n;
 }
 
@@ -23,7 +23,13 @@ void display(list *a);
 
 void insertFront(list *a, int x);
 
-int deleteFront(list *a);
+void insertRear(list *a, int x);
+
+void deleteFront(list *a);
+
+void deleteRear(list *a);
+
+void deletePosition(list *a, int key);
 
 int main()
 {
@@ -49,7 +55,7 @@ int main()
             int data;
             scanf("%d", &data);
 
-            insertFront(&a, data);
+            insertRear(&a, data);
         }
         else if (choice == 2)
         {
@@ -57,7 +63,9 @@ int main()
         }
         else if (choice == 3)
         {
-            printf("deleted %d\n", deleteFront(&a));
+            int key;
+            scanf("%d", &key);
+            deletePosition(&a, key);
         }
         else
         {
@@ -79,7 +87,6 @@ void display(list *a)
 
     if (cur == NULL)
     {
-        printf("no elements present");
         return;
     }
 
@@ -91,20 +98,112 @@ void display(list *a)
     printf("\n");
 }
 
-int deleteFront(list *a)
+void insertRear(list *a, int x)
 {
-    // empty list condition
-    if (a->front == NULL)
+    node cur = a->front;
+
+    if (cur == NULL)
     {
-        // printf("empty list\n");
-        return -1;
+        a->front = getnode(x);
+        return;
     }
 
+    while (cur->next != NULL)
+    {
+        cur = cur->next;
+    }
+
+    cur->next = getnode(x);
+}
+
+void deleteRear(list *a)
+{
     node cur = a->front;
-    int temp = cur->d;
+
+    // list empty condition
+    if (cur == NULL)
+    {
+        return;
+    }
+
+    // only one element present
+    if (cur->next == NULL)
+    {
+        a->front = NULL; // or a->front = a->front->next;
+
+        free(cur);
+        return;
+    }
+
+    while (cur->next->next != NULL)
+    {
+        cur = cur->next;
+    }
+
+    node temp = cur->next;
+
+    cur->next = NULL; // or cur->next = cur->next->next
+
+    free(temp);
+}
+
+void deletePosition(list *a, int key)
+{
+    node cur = a->front;
+
+    // list empty condition
+    if (cur == NULL)
+    {
+        return;
+    }
+
+    if (cur->next == NULL && key != 0)
+    {
+        printf("invalid key\n");
+        return;
+    }
+
+    if (cur->next == NULL)
+    {
+        a->front = a->front->next;
+
+        free(cur);
+        return;
+    }
+
+    int pos = 1;
+
+    while (cur->next->next != NULL && pos < key) // or use pos != key
+    {
+        cur = cur->next;
+        pos++;
+    }
+
+    if (pos != key)
+    {
+        printf("invalid key\n");
+        return;
+    }
+
+    node temp = cur->next;
+
+    cur->next = cur->next->next;
+
+    free(temp);
+}
+
+void deleteFront(list *a)
+{
+    node cur = a->front;
+
+    // empty list condition
+    if (cur == NULL)
+    {
+        // printf("empty list\n");
+        return;
+    }
 
     a->front = a->front->next;
 
     free(cur);
-    return temp;
 }
