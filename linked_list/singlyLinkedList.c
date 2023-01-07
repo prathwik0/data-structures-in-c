@@ -163,10 +163,9 @@ void deletePosition(list *a, int key)
         return;
     }
 
-    if (cur->next == NULL)
+    if (key == 0)
     {
         a->front = a->front->next;
-
         free(cur);
         return;
     }
