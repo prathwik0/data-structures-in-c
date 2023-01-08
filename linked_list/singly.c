@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct NODE
-{
-    int d;
-    struct NODE *next;
-} *node;
-typedef struct
-{
-    node front; // struct NODE* front;
-} list;
+#include "singly.h"
 
 node getnode(int data)
 {
@@ -17,68 +8,6 @@ node getnode(int data)
     n->d = data;
     n->next = NULL;
     return n;
-}
-
-void display(list *a);
-
-void insertFront(list *a, int x);
-void insertRear(list *a, int x);
-
-void deleteFront(list *a);
-void deleteRear(list *a);
-void deletePosition(list *a, int key);
-void deleteElement(list *a, int element);
-void deleteAfterPosition(list *a, int k);
-void deleteBeforePosition(list *a, int k);
-
-int main()
-{
-    list a;
-    a.front = NULL;
-
-    while (1)
-    {
-        int choice;
-        printf("1 - insert, 2 - display, 3 - delete : ");
-        scanf("%d", &choice);
-
-        /*
-        switch(choice)
-        case(1):
-        case(2):
-        case(3):
-        default:
-        */
-
-        if (choice == 1)
-        {
-            int data;
-            scanf("%d", &data);
-
-            insertRear(&a, data);
-        }
-        else if (choice == 2)
-        {
-            display(&a);
-        }
-        else if (choice == 3)
-        {
-            int key;
-            scanf("%d", &key);
-            deletePosition(&a, key);
-        }
-        else
-        {
-            return 0;
-        }
-    }
-}
-
-void insertFront(list *a, int data)
-{
-    node cur = a->front;
-    a->front = getnode(data);
-    a->front->next = cur;
 }
 
 void display(list *a)
@@ -96,6 +25,13 @@ void display(list *a)
         cur = cur->next;
     }
     printf("\n");
+}
+
+void insertFront(list *a, int data)
+{
+    node cur = a->front;
+    a->front = getnode(data);
+    a->front->next = cur;
 }
 
 void insertRear(list *a, int x)
@@ -159,23 +95,6 @@ void deleteRear(list *a)
 
     cur->next = NULL; // or cur->next = cur->next->next
 
-    free(temp);
-}
-
-void deletePosition(list *a, int key)
-{
-    node *n = &(a->front);
-    while (*n != NULL && key > 0)
-    {
-        n = &((*n)->next);
-        key--;
-    }
-    if (*n == NULL || key != 0)
-    {
-        return;
-    }
-    node temp = (*n);
-    *n = (*n)->next;
     free(temp);
 }
 
@@ -263,22 +182,3 @@ void deleteElement(list *a, int element)
 
     free(temp);
 }
-
-// void deleteElement(list *a, int element)
-// {
-//     node *n = &(a->front);
-//     while (*n != NULL)
-//     {
-//         if ((*n)->d == element)
-//         {
-//             node temp = *n;
-//             *n = (*n)->next;
-//             free(temp);
-//             return;
-//         }
-//         else
-//         {
-//             n = &((*n)->next);
-//         }
-//     }
-// }
