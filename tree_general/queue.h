@@ -1,5 +1,5 @@
-#ifndef __QUEUE
-#define __QUEUE
+#ifndef QUEUE_H
+#define QUEUE_H
 
 struct NODE;
 
