@@ -142,3 +142,4 @@ int deleteRear(list *a)
     free(cur);
     return temp;
 }
+
