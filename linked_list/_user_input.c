@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "singly.h"
+#include "doubly.h"
 
 int main()
 {
@@ -27,7 +27,7 @@ int main()
         {
             int key;
             scanf("%d", &key);
-            deletePosition(&a, key);
+            deleteElement(&a, key);
         }
         else
         {
