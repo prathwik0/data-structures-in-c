@@ -91,16 +91,17 @@ void display(list *a)
 
 void insertFront(list *a, int data)
 {
-    node cur = a->front;
+    node temp = a->front;
 
-    cur = get_node(data);
+    a->front = get_node(data);
 
-    cur->left = NULL;
-    cur->right = a->front;
+    a->front->left = NULL;
+    a->front->right = temp;
 
-    cur->right->left = cur;
-
-    a->front = cur;
+    if (temp != NULL)
+    {
+        a->front->right->left = a->front;
+    }
 }
 
 int deleteFront(list *a)
