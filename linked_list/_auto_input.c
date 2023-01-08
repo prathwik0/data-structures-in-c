@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "singly.h"
+#include "circDoubly.h"
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
     {
         int num = rand() % 100;
         printf("inserted %d\n", num);
-        insertRear(&a, num);
+        insertFront(&a, num);
     }
     display(&a);
 
@@ -25,7 +25,7 @@ int main()
     for (int i = 0; i < 5; i++)
     {
         printf("deleted\n");
-        deleteRear(&a);
+        deleteFront(&a);
     }
     display(&a);
 
