@@ -1,66 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct NODE
-{
-    struct NODE *left;
-    int d;
-    struct NODE *right;
-} *node;
-
-typedef struct
-{
-    node front;
-} list;
+#include "circDoubly.h"
 
 node get_node(int data)
 {
     node n = (struct NODE *)malloc(sizeof(struct NODE));
     n->d = data;
     return n;
-}
-
-void display(list *a);
-
-void insertFront(list *a, int data);
-
-int deleteFront(list *a);
-
-void insertRear(list *a, int data);
-
-int deleteRear(list *a);
-
-int main()
-{
-    list a;
-    a.front = NULL;
-
-    while (1)
-    {
-        int n;
-        printf("1 - insert, 2 - display, 3 - delete : ");
-        scanf("%d", &n);
-
-        if (n == 1)
-        {
-            int d;
-            scanf("%d", &d);
-
-            insertFront(&a, d);
-        }
-        else if (n == 2)
-        {
-            display(&a);
-        }
-        else if (n == 3)
-        {
-            printf("deleted %d\n", deleteFront(&a));
-        }
-        else
-        {
-            return 0;
-        }
-    }
 }
 
 void display(list *a)
@@ -97,7 +43,7 @@ void insertFront(list *a, int data)
 
     if (cur == NULL)
     {
-        get_node(&cur, data);
+        cur = get_node(data);
         cur->left = cur;
         cur->right = cur;
         a->front = cur;
@@ -106,8 +52,7 @@ void insertFront(list *a, int data)
 
     cur = cur->left;
 
-    get_node(&(cur->right), data);
-
+    cur->right = get_node(data);
     cur->right->right = a->front;
     cur->right->left = cur;
 
@@ -152,7 +97,7 @@ void insertRear(list *a, int data)
 
     if (cur == NULL)
     {
-        get_node(&cur, data);
+        cur = get_node(data);
         cur->left = cur;
         cur->right = cur;
         a->front = cur;
@@ -160,7 +105,7 @@ void insertRear(list *a, int data)
     }
 
     cur = cur->left;
-    get_node(&(cur->right), data);
+    cur->right = get_node(data);
 
     cur->right->right = a->front;
     cur->right->left = cur;
