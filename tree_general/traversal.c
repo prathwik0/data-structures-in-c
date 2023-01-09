@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include "treeNode.h"
 #include "queue.h"
 
 void preorder(node root)
