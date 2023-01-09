@@ -1,8 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #define N 5
 int stack[N];
 int top = -1;
+
 void push(int x)
 {
     if (top == N - 1)
@@ -15,6 +17,7 @@ void push(int x)
         stack[top] = x;
     }
 }
+
 void pop()
 {
     if (top == -1)
@@ -27,20 +30,23 @@ void pop()
         top--;
     }
 }
+
 void display()
 {
     int i;
+
     if (top == -1)
     {
-        printf("empty");
+        printf("empty\n");
     }
     else
     {
         for (i = 0; i <= top; i++)
         {
-            printf("%d", stack[i]);
+            printf("%d ", stack[i]);
         }
     }
+    printf("\n");
 }
 int main()
 {
@@ -52,10 +58,11 @@ int main()
         switch (ch)
         {
         case 1:
-            printf("enter the element");
+            printf("enter the element: ");
             scanf("%d", &data);
             printf("\n%d", data);
             push(data);
+            break;
         case 2:
             pop();
             break;
