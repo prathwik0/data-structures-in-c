@@ -2,8 +2,8 @@
 #define PRINT_2D_H
 
 #define COUNT 4
+#include "treeNode.h"
 
-struct NODE;
-void print2D(struct NODE *root);
+void print2D(node root);
 
 #endif
