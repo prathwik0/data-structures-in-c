@@ -1,14 +1,13 @@
-#ifndef CIRC_DOUBLY_H
-#define CIRC_DOUBLY_H
+#ifndef CIRC_SINGLY_H
+#define CIRC_SINGLY_H
 
 /*
- *This defines the nodes used in doubly linked list
+ *This defines the nodes used in singly linked list
  */
 typedef struct NODE
 {
-    struct NODE *left;
     int d;
-    struct NODE *right;
+    struct NODE *next;
 } *node;
 
 /*
@@ -27,14 +26,14 @@ void display(list *a);
 /*
  *These functions are used for insertion in the list
  */
-void insertFront(list *a, int data);
-void insertRear(list *a, int data);
+void insertFront(list *a, int x);
+void insertRear(list *a, int x);
 
 /*
  *These functions are used for deletion in the list
  */
-int deleteFront(list *a);
-int deleteRear(list *a);
+void deleteFront(list *a);
+void deleteRear(list *a);
 void deletePosition(list *a, int key);
 void deleteElement(list *a, int element);
 

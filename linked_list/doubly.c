@@ -25,7 +25,7 @@ void display(list *a)
         printf("-> %d ", cur->d);
     }
     printf("\n");
-    
+
     printf("left  -> %d ", cur->d);
     while (cur->left != NULL)
     {
@@ -33,7 +33,6 @@ void display(list *a)
         printf("-> %d ", cur->d);
     }
     printf("\n");
-    
 }
 
 void insertFront(list *a, int data)
@@ -123,48 +122,49 @@ int deleteRear(list *a)
     return temp;
 }
 
-void deleteElement(list *l,int element)
+void deleteElement(list *l, int element)
 {
-    node cur=l->front;
-    //Checks for List Empty Conditions     
-    if(cur==NULL)
+    node cur = l->front;
+    // Checks for List Empty Conditions
+    if (cur == NULL)
     {
         return;
     }
-    //checks if the Element is delted from the head
-    if(cur->d==element && cur->right==NULL){
-        l->front=NULL;
+    // checks if the Element is delted from the head
+    if (cur->d == element && cur->right == NULL)
+    {
+        l->front = NULL;
         free(cur);
         return;
     }
-    //head with other elements
-    if(cur->d==element)
+    // head with other elements
+    if (cur->d == element)
     {
-        l->front=cur->right;
-        l->front->left=NULL;
+        l->front = cur->right;
+        l->front->left = NULL;
         free(cur);
         return;
-    } 
-    //finding the element
-    //Kausthubh:THE FUCKING ORDER MATTERS DUMBASS (SEG FAULT OTHERWISE DUE TO cur->d)
-    while(cur!=NULL && cur->d!=element)
-    {
-        cur=cur->right;
     }
-    //if not found
-    if(cur==NULL)
+    // finding the element
+    // Kausthubh:THE FUCKING ORDER MATTERS DUMBASS (SEG FAULT OTHERWISE DUE TO cur->d)
+    while (cur != NULL && cur->d != element)
+    {
+        cur = cur->right;
+    }
+    // if not found
+    if (cur == NULL)
     {
         printf("Element not found\n");
         return;
     }
-    //found a match and not the last element
-    cur->left->right=cur->right;
-    //Last element
-    if(cur->right==NULL)
+    // found a match and not the last element
+    cur->left->right = cur->right;
+    // Last element
+    if (cur->right == NULL)
     {
         free(cur);
         return;
     }
-    cur->right->left=cur->left;
+    cur->right->left = cur->left;
     free(cur);
 }
