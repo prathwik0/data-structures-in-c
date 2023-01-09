@@ -1,22 +1,26 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "treeNode.h"
 #include "traversal.h"
 #include "print2D.h"
+#include "insert.h"
 
 int main()
 {
-    node root;
-    int x;
+    /*gives the seed for the rng*/
+    // time_t t;
+    // srand((unsigned)time(&t));
 
-    root = getNode(3);
-    root->left = getNode(2);
-    root->right = getNode(5);
-    root->left->left = getNode(1);
-    root->left->right = getNode(4);
-    root->left->left->left = getNode(10);
-    root->left->left->right = getNode(11);
-    root->left->right->left = getNode(12);
-    root->left->right->right = getNode(13);
+    node root = NULL;
+
+    // inserts 10 integers
+    for (int i = 0; i < 10; i++)
+    {
+        int num = rand() % 100;
+        printf("inserted %d\n", num);
+        insert(&root, num);
+    }
 
     //                 (3)
     //            /            \
