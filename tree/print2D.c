@@ -24,7 +24,7 @@ void print2Dutility(node root, int space)
 }
 
 // Wrapper over print2Dutility
-() void print2D(node *root)
+void print2D(node root)
 {
     // Pass initial space count as 0
     print2Dutility(root, 0);
