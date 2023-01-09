@@ -32,7 +32,7 @@ void print2DUtil(node root, int space)
 }
 
 // Wrapper over print2DUtil()
-void print2D(NODE *root)
+void print2D(struct NODE *root)
 {
     // Pass initial space count as 0
     print2DUtil(root, 0);

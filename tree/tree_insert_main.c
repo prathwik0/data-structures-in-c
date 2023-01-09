@@ -16,13 +16,13 @@ int main()
     insert_with_arranging(&(root), 8);
     insert_with_arranging(&(root), 9);
     insert_with_arranging(&(root), 10);
-    insert_with_arranging(&(root), 9);
-    insert_with_arranging(&(root), 7);
-    // insert_with_arranging(&(root), 13);
-    // insert_with_arranging(&(root), 14);
-    // insert_with_arranging(&(root), 15);
-    // insert_with_arranging(&(root), 16);
-    // insert_with_arranging(&(root), 17);
+    insert_with_arranging(&(root), 11);
+    insert_with_arranging(&(root), 12);
+    insert_with_arranging(&(root), 13);
+    insert_with_arranging(&(root), 14);
+    insert_with_arranging(&(root), 15);
+    insert_with_arranging(&(root), 16);
+    insert_with_arranging(&(root), 17);
 
     printf("\nInorder:   ");
     inorder(root);
