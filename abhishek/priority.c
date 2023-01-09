@@ -48,15 +48,6 @@ void sort()
     }
 }
 
-// void sort()
-// {
-//     int i, j;
-//     for (i = front; i < rear; i++)
-//         for (j = 0; j < rear - 1; j++)
-//             if (queue[j] > queue[j + 1])
-//                 swap(&queue[j], &queue[j + 1]);
-// }
-
 void dequeue()
 {
     if (front == -1 && rear == -1)
