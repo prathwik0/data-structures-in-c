@@ -7,12 +7,12 @@ int top = -1;
 
 void push(char ch)
 {
-	stack[++top] = ch;
+    stack[++top] = ch;
 }
 
 char pop()
 {
-	return stack[top--];
+    return stack[top--];
 }
 
 int main()
@@ -24,14 +24,16 @@ int main()
 
     int len = strlen(string);
 
-    for(int i=0;i<=len;i++){
+    for (int i = 0; i < len; i++)
+    {
         push(string[i]);
     }
 
     /*for(int i=0;top!=-1;i++)
     printf("%c",stack[i]);*/
-    for(int i=0;top!=-1;i++){
-        if(string[i]!=pop())
+    for (int i = 0; top != -1; i++)
+    {
+        if (string[i] != pop())
         {
             printf("Not a Palindrome");
             exit(0);
