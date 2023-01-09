@@ -6,6 +6,7 @@
 #include "print2D.h"
 #include "insert.h"
 #include "search.h"
+#include "delete.h"
 
 int main()
 {
@@ -22,14 +23,15 @@ int main()
     // initializes the root node
     node root = NULL;
 
-    // gets 25 integers
-    int num[25];
-    for (int i = 0; i < 25; i++)
+    // gets 100 integers
+    int num[100];
+    for (int i = 0; i < 100; i++)
     {
         num[i] = rand() % 1000;
     }
 
-    for (int i = 0; i < 10; i++)
+    // insert the integers in tree
+    for (int i = 0; i < 20; i++)
     {
         printf("inserted %d\n", num[i]);
         insert(&root, num[i]);
@@ -65,6 +67,15 @@ int main()
         printf("%d was not found\n", num[3]);
     else
         printf("Node found - %d\n", temp->data);
+
+    // delete few nodes
+    delete (&root, num[3]);
+    printf("deleted %d\n", num[3]);
+    delete (&root, num[7]);
+    printf("deleted %d\n", num[7]);
+
+    print2D(root);
+    printf("\n\n");
 
     // stop the clock and calculate elapsed time
     end = clock();
