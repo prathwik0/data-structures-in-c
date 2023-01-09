@@ -18,4 +18,9 @@ typedef struct NODE
  */
 node getNode(int data);
 
+/*
+ *get height of tree node
+ */
+int get_height(node root);
+
 #endif
