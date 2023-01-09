@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "treeNode.h"
 #include "traversal.h"
+#include "print2D.h"
 
 int main()
 {
@@ -36,6 +37,9 @@ int main()
 
     printf("\nLevelorder: ");
     levelorder(root);
+
+    printf("\n2D: ");
+    print2D(root);
 
     return 0;
 }
