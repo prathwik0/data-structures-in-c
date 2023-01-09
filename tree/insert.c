@@ -9,12 +9,10 @@ void insert(node *root, int data)
         *root = getNode(data);
         return;
     }
-
     if ((*root)->data == data)
     {
         return;
     }
-
     if ((*root)->data > data)
     {
         insert(&((*root)->left), data);
