@@ -11,11 +11,31 @@ node getNode(void *data_ptr)
     return temp;
 }
 
-int get_height(node root)
+int getHeight(node root)
 {
     if (root == NULL)
     {
         return 0;
     }
     return root->height;
+}
+
+int getHeightRecursive(node root)
+{
+    if (root == NULL)
+    {
+        return 0;
+    }
+
+    int x = getHeightRecursive(root->left);
+    int y = getHeightRecursive(root->right);
+
+    return x > y ? x + 1 : y + 1;
+}
+
+void updateHeight(node root)
+{
+    int a = getHeight(root->left);
+    int b = getHeight(root->right);
+    root->height = a > b ? a + 1 : b + 1;
 }

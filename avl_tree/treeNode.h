@@ -25,6 +25,17 @@ node getNode(void *data_ptr);
 /*
  *get height of tree node
  */
-int get_height(node root);
+int getHeight(node root);
+
+/*
+ *recursively get height
+ *don't use this
+ */
+int getHeightRecursive(node root);
+
+/*
+ *updates the height of the node
+ */
+void updateHeight(node root);
 
 #endif
