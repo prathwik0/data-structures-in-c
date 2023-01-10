@@ -20,7 +20,7 @@ void print2DUtil(node root, int space)
     printf("\n");
     for (int i = COUNT; i < space; i++)
         printf(" ");
-    printdata(root->ptr);
+    printData(root->ptr);
 
     // Process left child
     print2DUtil(root->left, space);
