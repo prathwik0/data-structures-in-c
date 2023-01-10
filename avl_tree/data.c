@@ -3,12 +3,12 @@
 #include <time.h>
 #include "data.h"
 
-void printdata(data x)
+void printData(data x)
 {
     printf("%d", x->i);
 }
 
-int datacmp(data x, data y)
+int dataCmp(data x, data y)
 {
     if (x->i == y->i)
     {
@@ -24,7 +24,7 @@ int datacmp(data x, data y)
     }
 }
 
-data getdata(int n)
+data getData(int n)
 {
     /*gives the seed for the rng*/
     time_t t;
@@ -34,7 +34,19 @@ data getdata(int n)
 
     for (int i = 0; i < n; i++)
     {
-        x[i].i = rand() % 10000;
+        x[i].i = rand() % 1000000;
+    }
+
+    return x;
+}
+
+data getBadData(int n)
+{
+    data x = (struct DATA *)malloc(sizeof(struct DATA) * n);
+
+    for (int i = 0; i < n; i++)
+    {
+        x[i].i = i;
     }
 
     return x;
