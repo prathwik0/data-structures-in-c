@@ -1,12 +1,7 @@
 #include <stdio.h>
+#include "treeNode.h"
 #include "print2D.h"
-
-typedef struct NODE
-{
-    struct NODE *left;
-    int data;
-    struct NODE *right;
-} *node;
+#include "data.h"
 
 void print2DUtil(node root, int space)
 {
@@ -25,15 +20,16 @@ void print2DUtil(node root, int space)
     printf("\n");
     for (int i = COUNT; i < space; i++)
         printf(" ");
-    printf("%d", root->data);
+    printdata(root->ptr);
 
     // Process left child
     print2DUtil(root->left, space);
 }
 
 // Wrapper over print2DUtil()
-void print2D(struct NODE *root)
+void print2D(node root)
 {
     // Pass initial space count as 0
     print2DUtil(root, 0);
+    printf("\n\n");
 }
