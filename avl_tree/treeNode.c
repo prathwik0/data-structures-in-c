@@ -1,4 +1,4 @@
-#include <stdlib.h>
+#include <stdlib.h> // for NULL and malloc
 #include "treeNode.h"
 
 node getNode(void *data_ptr)
