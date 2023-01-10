@@ -16,17 +16,19 @@ int main()
 
     node root = NULL;
 
-    data x = getdata(10000);
+    data x = getBadData(100000);
 
-    for (int i = 0; i < 10; i++)
-        printf("-- > %d\n", x[i].i);
+    // for (int i = 0; i < 100000; i++)
+    // {
+    //     printf("-- > %d\n", x[i].i);
+    // }
 
     for (int i = 0; i < 10000; i++)
     {
         insert(&root, x + i);
     }
 
-    print2D(root);
+    // print2D(root);
 
     // stop the clock and calculate elapsed time
     end = clock();
