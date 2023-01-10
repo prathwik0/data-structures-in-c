@@ -10,11 +10,11 @@ void insertUnbalanced(node *root, void *data_ptr)
         *root = getNode(data_ptr);
         return;
     }
-    if (datacmp((*root)->ptr, data_ptr) == 0)
+    if (dataCmp((*root)->ptr, data_ptr) == 0)
     {
         return;
     }
-    if (datacmp((*root)->ptr, data_ptr) == 1)
+    if (dataCmp((*root)->ptr, data_ptr) == 1)
     {
         insertUnbalanced(&((*root)->left), data_ptr);
         updateHeight(*root);
@@ -37,11 +37,11 @@ void insert(node *root, void *data_ptr)
         *root = getNode(data_ptr);
         return;
     }
-    if (datacmp((*root)->ptr, data_ptr) == 0)
+    if (dataCmp((*root)->ptr, data_ptr) == 0)
     {
         return;
     }
-    if (datacmp((*root)->ptr, data_ptr) == 1)
+    if (dataCmp((*root)->ptr, data_ptr) == 1)
     {
         insert(&((*root)->left), data_ptr);
         updateHeight(*root);
