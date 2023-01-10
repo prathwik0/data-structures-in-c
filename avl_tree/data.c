@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 #include "data.h"
 
 void printdata(data x)
@@ -28,11 +30,11 @@ data getdata(int n)
     time_t t;
     srand((unsigned)time(&t));
 
-    data x = (struct DATA *)malloc(sizeof(struct DATA)*n);
+    data x = (struct DATA *)malloc(sizeof(struct DATA) * n);
 
     for (int i = 0; i < n; i++)
     {
-        x[i].i = rand() % 1000;
+        x[i].i = rand() % 10000;
     }
 
     return x;
