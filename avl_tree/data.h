@@ -8,4 +8,6 @@ typedef struct DATA
 
 void printdata(data x);
 
+int datacmp(data x, data y);
+
 #endif
