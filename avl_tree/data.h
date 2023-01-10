@@ -10,4 +10,6 @@ void printdata(data x);
 
 int datacmp(data x, data y);
 
+data getdata(int n);
+
 #endif
