@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char expr_str[] = "3*9/2";
+char expr_str[] = "3-4*5*2-3*2";
 
 bool is_operator(char c)
 {
@@ -57,6 +57,24 @@ TREE_NODE *build_expr_tree(STACK *tree_node_stack, STACK *oper_stack)
   return root;
 }
 
+TREE_NODE *build_expr_tree_small(STACK *tree_node_stack, STACK *oper_stack)
+{
+  char *operator;
+  TREE_NODE *root, *lnode, *rnode;
+
+  stack_pop(oper_stack, (void *)&operator);
+  root = make_tree_node(*operator);
+
+  stack_pop(tree_node_stack, (void *)&rnode);
+  stack_pop(tree_node_stack, (void *)&lnode);
+  root->right = rnode;
+  root->left = lnode;
+
+  stack_push(tree_node_stack, root);
+
+  return root;
+}
+
 int main()
 {
   TREE *rtree, *ltree;
@@ -81,6 +99,11 @@ int main()
         stack_peek(&oper_stack, (void *)&oper_on_top);
         if (prec(token) > prec(*oper_on_top))
         {
+          stack_push(&oper_stack, make_oper(token));
+        }
+        else if (prec(token) == prec(*oper_on_top))
+        {
+          TREE_NODE *n = build_expr_tree_small(&tree_node_stack, &oper_stack);
           stack_push(&oper_stack, make_oper(token));
         }
         else
@@ -110,6 +133,10 @@ int main()
   printf("height of the expression tree = %d\n", height(exp_tree_root));
 
   tree_inorder(exp_tree_root);
+
+  printf("postorder: \n");
+  tree_postorder(exp_tree_root);
+  printf("\n");
 
   printf("value of this expr tree = %d\n", eval_expr(exp_tree_root));
 
