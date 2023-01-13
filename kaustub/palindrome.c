@@ -29,11 +29,16 @@ int main()
         push(string[i]);
     }
 
+<<<<<<< Updated upstream:kaustub/palindrome.c
     /*for(int i=0;top!=-1;i++)
     printf("%c",stack[i]);*/
     for (int i = 0; top != -1; i++)
     {
         if (string[i] != pop())
+=======
+    for(int i=0;top!=-1;i++){
+        if(string[i]!=pop())
+>>>>>>> Stashed changes:palindrome.c
         {
             printf("Not a Palindrome");
             exit(0);
