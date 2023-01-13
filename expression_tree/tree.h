@@ -10,4 +10,9 @@ typedef struct NODE
 
 node getNode(char c);
 
+void inorder(node root);
+void postorder(node root);
+
+int evaluate(node root);
+
 #endif
