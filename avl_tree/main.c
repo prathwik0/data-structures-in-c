@@ -28,7 +28,7 @@ int main()
         insert(&root, x + i);
     }
 
-    // print2D(root);
+    print2D(root);
 
     // stop the clock and calculate elapsed time
     end = clock();
