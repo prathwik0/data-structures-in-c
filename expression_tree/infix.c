@@ -5,10 +5,6 @@
 #include "stack.h"
 
 int getPrecedence(char ch);
-void inorder(node root);
-void postorder(node root);
-
-int evaluate(node root);
 
 int main()
 {
@@ -22,15 +18,18 @@ int main()
 
     while (*ptr != '\0')
     {
+        // is *ptr is a number, push to stack1
         if (isnumber(*ptr))
         {
             node root = getNode(*ptr);
             push(&s1, root);
         }
+        // if *ptr is operator, check the following conditions
         else
         {
             node operator= peek(&s2);
 
+            // if no operator in stack2, push *ptr to stack2
             if (operator== NULL)
             {
                 node root = getNode(*ptr);
@@ -75,6 +74,7 @@ int main()
         ptr++;
     }
 
+    // pop stack2 and finish building the expression tree
     while (peek(&s2) != NULL)
     {
         node root = pop(&s2);
@@ -85,6 +85,7 @@ int main()
         push(&s1, root);
     }
 
+    // the final expression tree is the remaining element in stack1
     node root = pop(&s1);
 
     inorder(root);
@@ -109,59 +110,6 @@ int getPrecedence(char ch)
     }
     else
     {
-        return 0;
-    }
-}
-
-void inorder(node root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-
-    inorder(root->left);
-    printf("%c ", root->c);
-    inorder(root->right);
-}
-
-void postorder(node root)
-{
-    if (root == NULL)
-    {
-        return;
-    }
-
-    postorder(root->left);
-    postorder(root->right);
-    printf("%c ", root->c);
-}
-
-int evaluate(node root)
-{
-    if (isnumber(root->c))
-    {
-        return (root->c) - 48;
-    }
-
-    char operator= root->c;
-
-    int left = evaluate(root->left);
-    int right = evaluate(root->right);
-
-    printf("left - %d, right - %d \n", left, right);
-
-    switch (operator)
-    {
-    case '+':
-        return left + right;
-    case '-':
-        return left - right;
-    case '*':
-        return left * right;
-    case '/':
-        return left / right;
-    default:
         return 0;
     }
 }
