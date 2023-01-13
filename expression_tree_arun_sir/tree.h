@@ -13,7 +13,6 @@ typedef struct tree
   TREE_NODE *root;
 } TREE;
 
-
 void tree_init(TREE *tree);
 
 int height(TREE_NODE *root);
@@ -25,6 +24,7 @@ TREE_NODE *inorder_succ(TREE_NODE *root);
 void tree_add(TREE *tree, TREE_NODE *root, TREE_NODE *node);
 
 void tree_inorder(TREE_NODE *root);
+void tree_postorder(TREE_NODE *root);
 
 int eval_expr(TREE_NODE *root);
 
