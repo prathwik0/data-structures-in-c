@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "singly.h"
 
-node getnode(int data)
+node getNode(int data)
 {
     node n = (struct NODE *)malloc(sizeof(struct NODE));
     n->d = data;
@@ -29,7 +29,7 @@ void display(list *a)
 
 void insertFront(list *a, int data)
 {
-    node temp = getnode(data);
+    node temp = getNode(data);
     temp->next = a->front;
     a->front = temp;
 }
@@ -40,7 +40,7 @@ void insertRear(list *a, int data)
 
     if (cur == NULL)
     {
-        a->front = getnode(data);
+        a->front = getNode(data);
         return;
     }
 
@@ -49,7 +49,7 @@ void insertRear(list *a, int data)
         cur = cur->next;
     }
 
-    cur->next = getnode(data);
+    cur->next = getNode(data);
 }
 
 void deleteFront(list *a)
@@ -68,6 +68,23 @@ void deleteFront(list *a)
 }
 
 void deleteRear(list *a)
+{
+    if (a->front == NULL)
+    {
+        return;
+    }
+
+    node *cur = &(a->front);
+    while ((*cur)->next != NULL)
+    {
+        cur = &((*cur)->next);
+    }
+    node temp = *cur;
+    *cur = NULL;
+    free(temp);
+}
+
+void deleteRearBob(list *a)
 {
     node cur = a->front;
 
