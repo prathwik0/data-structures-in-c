@@ -8,70 +8,42 @@ int getPrecedence(char ch);
 
 int main()
 {
-    char *expression = "3-4*5*2-3*2";
-    char *ptr = expression;
+    char *expression = "a+c*d^e-f";
+    char *ch = expression;
 
     stack s1, s2;
 
     s1.front = NULL;
     s2.front = NULL;
 
-    while (*ptr != '\0')
+    while (*ch != '\0')
     {
-        // is *ptr is a number, push to stack1
-        if (isnumber(*ptr))
+        // is *ch is alnum, push to stack1
+        if (isalnum(*ch))
         {
-            node root = getNode(*ptr);
+            node root = getNode(*ch);
             push(&s1, root);
         }
-        // if *ptr is operator, check the following conditions
+        // if *ch is operator, check the following conditions
         else
         {
             node operator= peek(&s2);
-
-            // if no operator in stack2, push *ptr to stack2
-            if (operator== NULL)
+            while (operator!= NULL && getPrecedence(*ch) <= getPrecedence(operator->c))
             {
-                node root = getNode(*ptr);
-                push(&s2, root);
+                operator= pop(&s2);
+
+                operator->right = pop(&s1);
+                operator->left = pop(&s1);
+
+                push(&s1, operator);
+
+                operator= peek(&s2);
             }
-            else if (getPrecedence(*ptr) > getPrecedence(operator->c))
-            {
-                node root = getNode(*ptr);
-                push(&s2, root);
-            }
-            else if (getPrecedence(*ptr) == getPrecedence(operator->c))
-            {
-                node root = pop(&s2);
-
-                root->right = pop(&s1);
-                root->left = pop(&s1);
-
-                push(&s1, root);
-
-                node root2 = getNode(*ptr);
-                push(&s2, root2);
-            }
-            else
-            {
-                node root = pop(&s2);
-
-                while (root != NULL)
-                {
-                    root->right = pop(&s1);
-                    root->left = pop(&s1);
-
-                    push(&s1, root);
-
-                    root = pop(&s2);
-                }
-
-                node root2 = getNode(*ptr);
-                push(&s2, root2);
-            }
+            node root = getNode(*ch);
+            push(&s2, root);
         }
 
-        ptr++;
+        ch++;
     }
 
     // pop stack2 and finish building the expression tree
@@ -92,24 +64,29 @@ int main()
     printf("\n");
     postorder(root);
 
-    printf("\nEvaluated expression:\n");
-    printf("%d\n", evaluate(root));
+    // printf("\nEvaluated expression:\n");
+    // printf("%d\n", evaluate(root));
 
     return 0;
 }
 
 int getPrecedence(char ch)
 {
+    if (ch == '^')
+    {
+        return 3;
+    }
+    if (ch == '*' || ch == '/')
+    {
+        return 2;
+    }
     if (ch == '+' || ch == '-')
     {
         return 1;
     }
-    else if (ch == '/' || ch == '*')
-    {
-        return 2;
-    }
-    else
+    if (ch == '(')
     {
         return 0;
     }
+    return 0;
 }
