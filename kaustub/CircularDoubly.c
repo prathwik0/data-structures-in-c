@@ -81,7 +81,6 @@ void delete_element(list *l, int data)
 
     if (l->head->data == data)
     {
-        printf("Check");
         l->tail->right = cur->right;
         cur->right->left = l->tail;
         free(cur);
@@ -121,7 +120,7 @@ int main()
     //  insert_element(&l,50);
     //  insert_element(&l,60);
     display(&l);
-    delete_element(&l, 10);
+    delete_element(&l, 20);
     display(&l);
     return 0;
 }
