@@ -29,18 +29,18 @@ void display(list *a)
 
 void insertFront(list *a, int data)
 {
-    node cur = a->front;
-    a->front = getnode(data);
-    a->front->next = cur;
+    node temp = getnode(data);
+    temp->next = a->front;
+    a->front = temp;
 }
 
-void insertRear(list *a, int x)
+void insertRear(list *a, int data)
 {
     node cur = a->front;
 
     if (cur == NULL)
     {
-        a->front = getnode(x);
+        a->front = getnode(data);
         return;
     }
 
@@ -49,7 +49,7 @@ void insertRear(list *a, int x)
         cur = cur->next;
     }
 
-    cur->next = getnode(x);
+    cur->next = getnode(data);
 }
 
 void deleteFront(list *a)
@@ -68,6 +68,36 @@ void deleteFront(list *a)
 }
 
 void deleteRear(list *a)
+{
+    node cur = a->front;
+
+    if (cur == NULL)
+    {
+        return;
+    }
+
+    if (cur->next == NULL)
+    {
+        a->front = NULL; // or a->front = a->front->next;
+
+        free(cur);
+        return;
+    }
+
+    node previous = cur;
+    cur = cur->next;
+
+    while (cur->next != NULL)
+    {
+        previous = cur;
+        cur = cur->next;
+    }
+
+    previous->next = NULL;
+    free(cur);
+}
+
+void deleteRear2(list *a)
 {
     node cur = a->front;
 

@@ -26,8 +26,8 @@ void display(list *a);
 /*
  *These functions are used for insertion in the list
  */
-void insertFront(list *a, int x);
-void insertRear(list *a, int x);
+void insertFront(list *a, int data);
+void insertRear(list *a, int data);
 
 /*
  *These functions are used for deletion in the list
