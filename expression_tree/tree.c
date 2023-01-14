@@ -1,6 +1,7 @@
 #include <stdlib.h> //needed for malloc
 #include <stdio.h>  //needed for print
 #include <ctype.h>  //needed for isnumber()
+#include <math.h>   //needed for pow()
 #include "tree.h"
 
 node getNode(char c)
@@ -60,6 +61,8 @@ int evaluate(node root)
         return left * right;
     case '/':
         return left / right;
+    case '^':
+        return pow(left, right);
     default:
         return 0;
     }
