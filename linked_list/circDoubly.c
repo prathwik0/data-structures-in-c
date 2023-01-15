@@ -2,10 +2,12 @@
 #include <stdlib.h>
 #include "circDoubly.h"
 
-node get_node(int data)
+node getNode(int data)
 {
     node n = (struct NODE *)malloc(sizeof(struct NODE));
     n->d = data;
+    n->left = NULL;
+    n->right = NULL;
     return n;
 }
 
@@ -43,16 +45,17 @@ void insertFront(list *a, int data)
 
     if (cur == NULL)
     {
-        cur = get_node(data);
+        cur = getNode(data);
         cur->left = cur;
         cur->right = cur;
+
         a->front = cur;
         return;
     }
 
     cur = cur->left;
 
-    cur->right = get_node(data);
+    cur->right = getNode(data);
     cur->right->right = a->front;
     cur->right->left = cur;
 
@@ -97,7 +100,7 @@ void insertRear(list *a, int data)
 
     if (cur == NULL)
     {
-        cur = get_node(data);
+        cur = getNode(data);
         cur->left = cur;
         cur->right = cur;
         a->front = cur;
@@ -105,7 +108,7 @@ void insertRear(list *a, int data)
     }
 
     cur = cur->left;
-    cur->right = get_node(data);
+    cur->right = getNode(data);
 
     cur->right->right = a->front;
     cur->right->left = cur;
@@ -142,4 +145,3 @@ int deleteRear(list *a)
     free(cur);
     return temp;
 }
-
