@@ -63,6 +63,52 @@ void insertFront(list *a, int data)
     a->front = newNode;
 }
 
+void insertPosition(list *a, int pos)
+{
+    if (a->front == NULL && pos != 0)
+    {
+        return;
+    }
+
+    if (a->front == NULL)
+    {
+        a->front = get_node(data);
+        a->rear = a->front;
+        return;
+    }
+
+    if (pos == 0)
+    {
+        node temp = a->front;
+        a->front = get_node(data);
+        a->front->right = temp;
+        a->front->right->left = a->front;
+        return;
+    }
+
+    node cur = a->front;
+    pos--;
+
+    while (cur != NULL && pos != 0)
+    {
+        cur = cur->right;
+        pos--;
+    }
+
+    if (cur == NULL)
+    {
+        printf("position out of bound\n");
+        return;
+    }
+
+    node temp = cur->right;
+    cur->right = get_node(data);
+    cur->right->left = cur;
+    cur->right->right = temp;
+
+    (temp == NULL) ? (a->rear = cur->right) : (temp->left = cur->right);
+}
+
 int deleteFront(list *a)
 {
     if (a->front == NULL)
