@@ -6,6 +6,8 @@ node get_node(int data)
 {
     node n = (struct NODE *)malloc(sizeof(struct NODE));
     n->d = data;
+    n->left = NULL;
+    n->right = NULL;
     return n;
 }
 
@@ -18,11 +20,11 @@ void display(list *a)
         return;
     }
 
-    printf("right -> %d ", cur->d);
-    while (cur->right != NULL)
+    printf("right ");
+    while (cur != NULL)
     {
-        cur = cur->right;
         printf("-> %d ", cur->d);
+        cur = cur->right;
     }
     printf("\n");
 
@@ -37,40 +39,51 @@ void display(list *a)
 
 void insertFront(list *a, int data)
 {
-    node temp = a->front;
+    // node cur = a->front;
 
-    a->front = get_node(data);
+    // a->front = get_node(data);
+    // a->front->right = cur;
 
-    a->front->left = NULL;
-    a->front->right = temp;
+    // if (cur != NULL)
+    // {
+    //     a->front->right->left = a->front;
+    // }
 
-    if (temp != NULL)
+    node newNode = get_node(data);
+
+    if (a->front == NULL)
     {
-        a->front->right->left = a->front;
+        a->front = newNode;
+        a->rear = newNode;
+        return;
     }
+
+    a->front->left = newNode;
+    newNode->right = a->front;
+    a->front = newNode;
 }
 
 int deleteFront(list *a)
 {
-    node cur = a->front;
-
-    if (cur == NULL)
+    if (a->front == NULL)
     {
         return -1;
     }
 
-    if (cur->right == NULL)
+    node cur = a->front;
+
+    if (a->front->right == NULL)
     {
         a->front = NULL;
+        a->rear = NULL;
 
         int temp = cur->d;
         free(cur);
         return temp;
     }
 
-    cur->right->left = NULL;
-
-    a->front = cur->right;
+    a->front = a->front->right;
+    a->front->left = NULL;
 
     int temp = cur->d;
     free(cur);
@@ -79,47 +92,81 @@ int deleteFront(list *a)
 
 void insertRear(list *a, int data)
 {
-    node cur = a->front;
+    node newNode = get_node(data);
 
-    if (cur == NULL)
+    if (a->rear == NULL)
     {
-        cur = get_node(data);
-
-        cur->left = NULL;
-        cur->right = NULL;
-
-        a->front = cur;
+        a->rear = newNode;
+        a->front = newNode;
         return;
     }
 
-    while (cur->right != NULL)
-        cur = cur->right;
-
-    cur->right = get_node(data);
-
-    cur->right->right = NULL;
-    cur->right->left = cur;
+    a->rear->right = newNode;
+    newNode->left = a->rear;
+    a->rear = newNode;
 }
 
 int deleteRear(list *a)
 {
-    node cur = a->front;
-
-    if (cur == NULL)
+    if (a->rear == NULL)
     {
         return -1;
     }
 
-    while (cur->right != NULL)
+    node cur = a->rear;
+
+    if (a->rear->left == NULL)
     {
-        cur = cur->right;
+        a->rear = NULL;
+        a->front = NULL;
+
+        int temp = cur->d;
+        free(cur);
+        return temp;
     }
 
-    cur->left->right = NULL;
+    a->rear = a->rear->left;
+    a->rear->right = NULL;
 
     int temp = cur->d;
     free(cur);
     return temp;
+}
+
+void deleteElement(list *a, int element)
+{
+    if (a->front == NULL)
+    {
+        return;
+    }
+
+    node cur = a->front;
+
+    while (cur != NULL && cur->d != element)
+    {
+        cur = cur->right;
+    }
+
+    if (cur == NULL)
+    {
+        printf("not found\n");
+        return;
+    }
+
+    if (cur == a->front)
+    {
+        deleteFront(a);
+        return;
+    }
+    if (cur == a->rear)
+    {
+        deleteRear(a);
+        return;
+    }
+
+    cur->left->right = cur->right;
+    cur->right->left = cur->left;
+    free(cur);
 }
 
 void deleteElement(list *l, int element)

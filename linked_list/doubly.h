@@ -17,6 +17,7 @@ typedef struct NODE
 typedef struct
 {
     node front; // struct NODE* front;
+    node rear;
 } list;
 
 /*
@@ -35,5 +36,5 @@ void insertRear(list *a, int data);
  */
 int deleteFront(list *a);
 int deleteRear(list *a);
-void deleteElement(list *l,int element);
+void deleteElement(list *l, int element);
 #endif
