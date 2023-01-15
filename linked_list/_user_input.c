@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "doubly.h"
+#include "singly.h"
 
 int main()
 {
@@ -17,7 +17,7 @@ int main()
             int data;
             scanf("%d", &data);
 
-            insertRear(&a, data);
+            insertFront(&a, data);
         }
         else if (choice == 2)
         {
@@ -25,9 +25,9 @@ int main()
         }
         else if (choice == 3)
         {
-            int key;
-            scanf("%d", &key);
-            deleteElement(&a, key);
+            // int key;
+            // scanf("%d", &key);
+            deleteRear(&a);
         }
         else
         {
