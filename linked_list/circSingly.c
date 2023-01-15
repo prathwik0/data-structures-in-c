@@ -85,20 +85,17 @@ void display(list *a)
 
 void insertFront(list *a, int data)
 {
-    node cur = a->rear;
-
-    if (cur == NULL)
+    if (a->front == NULL)
     {
-        cur = get_node(data);
-        cur->next = cur;
-        a->front = cur;
+        a->front = get_node(data);
+        a->front->next = cur;
         a->rear = cur;
         return;
     }
 
-    cur->next = get_node(data);
-    cur->next->next = a->front;
-    a->front = cur->next;
+    a->rear->next = get_node(data);
+    a->rear->next->next = a->front;
+    a->front = a->rear->next;
 }
 
 int deleteFront(list *a)
