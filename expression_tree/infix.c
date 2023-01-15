@@ -24,7 +24,7 @@ int main()
             node root = getNode(*ch);
             push(&s1, root);
         }
-        // if *ch is operator, check the following conditions
+        // if *ch is an operator do the following
         else
         {
             node operator= peek(&s2);
