@@ -21,11 +21,12 @@ void display(list *a)
     }
 
     printf("right ");
-    while (cur != NULL)
+    while (cur->right != NULL)
     {
         printf("-> %d ", cur->d);
         cur = cur->right;
     }
+    printf("-> %d ", cur->d);
     printf("\n");
 
     printf("left  -> %d ", cur->d);
@@ -49,21 +50,19 @@ void insertFront(list *a, int data)
     //     a->front->right->left = a->front;
     // }
 
-    node newNode = get_node(data);
-
     if (a->front == NULL)
     {
-        a->front = newNode;
-        a->rear = newNode;
+        a->front = get_node(data);
+        a->rear = a->front;
         return;
     }
 
-    a->front->left = newNode;
-    newNode->right = a->front;
-    a->front = newNode;
+    a->front->left = get_node(data);
+    a->front->left->right = a->front;
+    a->front = a->front->left;
 }
 
-void insertPosition(list *a, int pos)
+void insertPosition(list *a, int data, int pos)
 {
     if (a->front == NULL && pos != 0)
     {
@@ -154,17 +153,17 @@ void insertRear(list *a, int data)
 
 int deleteRear(list *a)
 {
-    if (a->rear == NULL)
+    if (a->front == NULL)
     {
         return -1;
     }
 
     node cur = a->rear;
 
-    if (a->rear->left == NULL)
+    if (a->front->right == NULL)
     {
-        a->rear = NULL;
         a->front = NULL;
+        a->rear = NULL;
 
         int temp = cur->d;
         free(cur);
@@ -215,7 +214,7 @@ void deleteElement(list *a, int element)
     free(cur);
 }
 
-void deleteElement(list *l, int element)
+void deleteElementKaustub(list *l, int element)
 {
     node cur = l->front;
     // Checks for List Empty Conditions
