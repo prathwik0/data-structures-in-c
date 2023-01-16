@@ -36,5 +36,5 @@ void insertRear(list *a, int data);
  */
 int deleteFront(list *a);
 int deleteRear(list *a);
-void deleteElement(list *l, int element);
+void deleteElement(list *a, int element);
 #endif
