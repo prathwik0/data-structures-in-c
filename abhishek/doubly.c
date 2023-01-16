@@ -46,6 +46,7 @@ void insertfront(list *a, int x)
     {
         node newnode = getnode(x);
         a->front = newnode;
+        a->rear = a->front;
         a->front->next = NULL;
         a->front->prev = NULL;
     }
@@ -79,17 +80,7 @@ void deletefront(list *a)
 void deleterear(list *a)
 {
     node cur = a->rear;
-    if (a->rear == NULL)
-    {
-        return;
-    }
-    if (cur->prev == NULL)
-    {
-        a->front = NULL;
-        a->rear = NULL;
-        free(cur);
-        return;
-    }
+
     a->rear->prev->next = NULL;
     a->rear = a->rear->prev;
     free(cur);
@@ -104,7 +95,6 @@ void deleteelement(list *a, int x)
     }
     while (cur != NULL && cur->d != x)
     {
-        printf("accessed\n");
         cur = cur->next;
     }
     if (cur == NULL)
@@ -123,7 +113,6 @@ void deleteelement(list *a, int x)
         deletefront(a);
         return;
     }
-
     cur->prev->next = cur->next;
     cur->next->prev = cur->prev;
     free(cur);
