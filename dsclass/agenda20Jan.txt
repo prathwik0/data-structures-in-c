@@ -1,0 +1,10 @@
+Concepts behind a self-balancing tree
+    A height balanced binary tree
+One case study: AVL tree
+    Balance factor
+    Concepts of rotation
+    LL, RR, LR and RL
+
+Hash tables
+    The motivation behind it 
+    Practical Applications
