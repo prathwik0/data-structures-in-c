@@ -8,7 +8,7 @@ int getPrecedence(char ch);
 
 int main()
 {
-    char *expression = "a+c*d^e-f";
+    char *expression = "3-4*5*2-3*2";
     char *ch = expression;
 
     stack s1, s2;
@@ -64,8 +64,8 @@ int main()
     printf("\n");
     postorder(root);
 
-    // printf("\nEvaluated expression:\n");
-    // printf("%d\n", evaluate(root));
+    printf("\nEvaluated expression:\n");
+    printf("%d\n", evaluate(root));
 
     return 0;
 }
