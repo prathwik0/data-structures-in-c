@@ -57,23 +57,23 @@ TREE_NODE *build_expr_tree(STACK *tree_node_stack, STACK *oper_stack)
   return root;
 }
 
-TREE_NODE *build_expr_tree_small(STACK *tree_node_stack, STACK *oper_stack)
-{
-  char *operator;
-  TREE_NODE *root, *lnode, *rnode;
+// TREE_NODE *build_expr_tree_small(STACK *tree_node_stack, STACK *oper_stack)
+// {
+//   char *operator;
+//   TREE_NODE *root, *lnode, *rnode;
 
-  stack_pop(oper_stack, (void *)&operator);
-  root = make_tree_node(*operator);
+//   stack_pop(oper_stack, (void *)&operator);
+//   root = make_tree_node(*operator);
 
-  stack_pop(tree_node_stack, (void *)&rnode);
-  stack_pop(tree_node_stack, (void *)&lnode);
-  root->right = rnode;
-  root->left = lnode;
+//   stack_pop(tree_node_stack, (void *)&rnode);
+//   stack_pop(tree_node_stack, (void *)&lnode);
+//   root->right = rnode;
+//   root->left = lnode;
 
-  stack_push(tree_node_stack, root);
+//   stack_push(tree_node_stack, root);
 
-  return root;
-}
+//   return root;
+// }
 
 int main()
 {
@@ -101,11 +101,11 @@ int main()
         {
           stack_push(&oper_stack, make_oper(token));
         }
-        else if (prec(token) == prec(*oper_on_top))
-        {
-          TREE_NODE *n = build_expr_tree_small(&tree_node_stack, &oper_stack);
-          stack_push(&oper_stack, make_oper(token));
-        }
+        // else if (prec(token) == prec(*oper_on_top))
+        // {
+        //   TREE_NODE *n = build_expr_tree_small(&tree_node_stack, &oper_stack);
+        //   stack_push(&oper_stack, make_oper(token));
+        // }
         else
         {
           TREE_NODE *n = build_expr_tree(&tree_node_stack, &oper_stack);
