@@ -52,8 +52,7 @@ void insertFront(list *a, int data)
 
     if (a->front == NULL)
     {
-        a->front = get_node(data);
-        a->rear = a->front;
+        a->front = a->rear = get_node(data);
         return;
     }
 
